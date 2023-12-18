@@ -79,4 +79,17 @@ In order to evaluate the Q/A system, we need to define several benchmarks to und
         
         Label: Entailment
 
+  # Note On Span Detection and Text Generation
   
+Span detection tackles the challenge of extracting pertinent information from a given context in response to a question. Essentially, it involves identifying the relevant segment within the context that answers the question. Notably, models used for span detection don't create new text. Instead, based on the question posed, they pinpoint the start and end points of the relevant information in the context. __This makes them highly effective for applications where precision in information retrieval is crucial, and there's a need for exact extraction__.
+
+To illustrate, consider this example:
+
+Context: 'The cat ate cheese'
+Question: "What did the cat eat?"
+
+
+The input sequence - '[CLS], 'What', 'did', 'the', 'cat', 'eat', '[SEP]', 'The', 'cat', 'ate', 'cheese', '[SEP]' - is processed by the model. The model then outputs two probabilities for each token in the context - StartScore and EndScore - which signify the span that pertains to the question. The highest values of these scores determine the start and end of the answer.
+It's important to understand that for effective span detection, the model should use context-aware tokens. Therefore, models from the BERT family (autoencoders), such as BERT, RoBERTA, ALBERT, and DeBERTa, are more suitable for this task than autoregressive models like GPT, which rely on masked tokens.
+
+
