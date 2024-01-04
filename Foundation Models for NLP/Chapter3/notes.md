@@ -38,6 +38,19 @@ Two main challenges in pre-training large models are the memory consumption and 
  
   + ALBERT uses two loss function. One is MLM simlar to what BERT does. The second, change the training objective of Next Sentence Prediction (NSP) which is binary classification task, to Sentence Oorder Predictin (SOP) which focuses on inter-sentence coherence. In SOP, the system gets two segment (could be a set of sentences) and it classifies whether they are consecutive in the document or no. The postive examples, indicate two segments are consecutive and the negative examples are created by reversing the order of two consecutive segments.
  
-+ ALBERT is pre-trained on BOOKCORPUS and English Wekipedia datasets where the inputs are formed as [CLS]x1[SEP]x2[SEP] where x1 and x2 are input segments (more than one sentence).  
++ ALBERT is pre-trained on BOOKCORPUS and English Wekipedia datasets where the inputs are formed as [CLS]x1[SEP]x2[SEP] where x1 and x2 are input segments (more than one sentence).
+
+### DeBERTa
+DeBERTa (Decoding enhanced BERT with disentangled attention) improved BERT and state of the art of PML by introducting two new novel technique.
+ + __Disentangled attention__ : Normally the attention vector of a word is the sum of the word embedding and the corresponding position embedding. However, Disentangled attention, represents each word using two separate vectors representing both content and the position, respectively. Attention weights among the words are computed using dientangled matrices based on their contents and __relative positions__.
+ + __Enhanaced Masked Decoder__:  In MLM, the languege model predicts the masked token based on the surrounding contents and their positions (releative). Disentangled attention considers the RELATIVE postion of the context words. However, the ABSOLUTE position of the words is important. __For example, the statement 'A new store opened beside the mall' where the two words 'mall' and 'store' are masked for the prediction. Although, 'store' and 'mall' have similar local context but one is the subject and the other one is the object. Thus, it is importnat to account the absolute position of words in the language modeling process__. Note that, the disentangled attention only consider the relative psoition of the context words and not the absolute position. To achieve this goal, DeBERTa, incorporates the absolute word position embeddings right efore the softmax layer where the model decodes (precits) the masked words. Note that, BERT add the positional embedding of a token at the begining to the contextual embedding, DeBERTa add positional embedding before the softmax layer and call it Enhanced Masked Decoder (EMD). 
+ + This method calculates the attenion output from two sets matrixes that represent the content and position embeddings of each token. Three matrices consider the content-to-content, content-to-position and position-to-content relationship amongs the tokens.
+ + Also the paper uses Virtually Adversrial Training (VAT) method to improve the model's performance on downstream tasks. VAT in general has 4 steps to provide a robust model
+   +  Get the training dataset
+   +  initially train the model
+   +  select some samples from the training data and perturbed it to maximize the error of the trained model (optimization)
+   +  given the adversary examples and the previous training data, train the model.
+
+   Note that, in NLP, the perturbation is done on embeddings rather than on words or tokens directly
 
 
