@@ -51,6 +51,7 @@ DeBERTa (Decoding enhanced BERT with disentangled attention) improved BERT and s
    +  select some samples from the training data and perturbed it to maximize the error of the trained model (optimization)
    +  given the adversary examples and the previous training data, train the model.
 
-   Note that, in NLP, the perturbation is done on embeddings rather than on words or tokens directly
+   Note that, in NLP, the perturbation is done on embeddings rather than on words or tokens directly.
+$$\text{given }  \hat{y} = f(\mathbf{X}), \text{find } \mathbf{X} \text{ such that } \max(y - \hat{y})$$
 
 
