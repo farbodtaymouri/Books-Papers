@@ -54,4 +54,9 @@ DeBERTa (Decoding enhanced BERT with disentangled attention) improved BERT and s
    Note that, in NLP, the perturbation is done on embeddings rather than on words or tokens directly.
 $$\text{given }  \hat{y} = f(\mathbf{X}), \text{find } \mathbf{X} \text{ such that } \max(y - \hat{y})$$
 
+### SpanBERT
+Many NLP applications require reasoning on two or more spans of a text. SpanBERT intorduces __span-level pre-training__ that is good so tasks such as correference resolution, relation extraction and question answering. This method differes in two ways compared to BERT
++ The masking mechanism is done for contigous spans of texts rather than for tokens.
++ A new objective function is defined where a token in the masked span is predicted using the boundary tokens of the span and it's relative position in the span. For example, for a sentece like "Farbod drives [s] 4 wheel drive [e] cars in Australia, then each token in the span part ' 4 wheel drive' is predicted using boundary tokens 'drives' and 'cars'. This new objective is called span boundary objective (SPO). 
+
 
