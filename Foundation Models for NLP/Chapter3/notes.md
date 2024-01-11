@@ -57,6 +57,12 @@ $$\text{given }  \hat{y} = f(\mathbf{X}), \text{find } \mathbf{X} \text{ such th
 ### SpanBERT
 Many NLP applications require reasoning on two or more spans of a text. SpanBERT intorduces __span-level pre-training__ that is good so tasks such as correference resolution, relation extraction and question answering. This method differes in two ways compared to BERT
 + The masking mechanism is done for contigous spans of texts rather than for tokens.
-+ A new objective function is defined where a token in the masked span is predicted using the boundary tokens of the span and it's relative position in the span. For example, for a sentece like "Farbod drives [s] 4 wheel drive [e] cars in Australia, then each token in the span part ' 4 wheel drive' is predicted using boundary tokens 'drives' and 'cars'. This new objective is called span boundary objective (SPO). 
++ A new objective function is defined where a token in the masked span is predicted using the boundary tokens of the span and it's relative position in the span. For example, for a sentece like "Farbod drives [s] 4 wheel drive [e] cars in Australia, then each token in the span part ' 4 wheel drive' is predicted using boundary tokens 'drives' and 'cars'. This new objective is called span boundary objective (SPO).
+  ![SBO](https://github.com/farbodtaymouri/Books-Papers/blob/main/Foundation%20Models%20for%20NLP/image/SBO.png)
+  More specifically if $\mathbf{x}_1,...\mathbf{x}_n$ is the output encoder of BERT and if ${x_s,....,x_e} shows the text span. Then for each token $x_i$ in the span text the prediction $\mathbf{y}_i$ is calculated as follow.:
+  ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/Foundation%20Models%20for%20NLP/image/CodeCogsEqn.png)
+  where $\mathbf{p}_i$ is the reletavie position embeddings in span text. This is implemented as a two layer Feed Forward neural net. The paper calculate to total loss as follow:
+  ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/Foundation%20Models%20for%20NLP/image/SBO_loss.png)
 
+  
 
