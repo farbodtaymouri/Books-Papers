@@ -65,6 +65,6 @@ Many NLP applications require reasoning on two or more spans of a text. SpanBERT
   ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/Foundation%20Models%20for%20NLP/image/SBO_loss.png)
   In this equation, MLM is the loss function for predicting the masked token. Similar to what BERT uses.
 
-+ Training is done using the intorduced masking and the objective function defined above on two datasets BookCorpus and English Wikipedia.
-+ Evaluation is done on several datasets for question answering such as SQuAD1,2 and datasets for relation extraction (TACRD) and coreference resolution (OntoNotes), and language understanding dataset (GLUE).
++ __Pre_Training__ is done using the intorduced masking and the objective function defined above on two datasets BookCorpus and English Wikipedia. Note that this is only __pre_training__.
++ The __evaluation on downstream__ tasks such as Q/A, Coreference Resolution, Relation Extractioon, and GLUE require fine-tuning as explained in the paper. Evaluation is done on several datasets for question answering such as SQuAD1,2 and datasets for relation extraction (TACRD) and coreference resolution (OntoNotes), and language understanding dataset (GLUE).
 
