@@ -68,3 +68,10 @@ Many NLP applications require reasoning on two or more spans of a text. SpanBERT
 + __Pre_Training__ is done using the intorduced masking and the objective function defined above on two datasets BookCorpus and English Wikipedia. Note that this is only __pre_training__.
 + The __evaluation on downstream__ tasks such as Q/A, Coreference Resolution, Relation Extractioon, and GLUE require fine-tuning as explained in the paper. Evaluation is done on several datasets for question answering such as SQuAD1,2 and datasets for relation extraction (TACRD) and coreference resolution (OntoNotes), and language understanding dataset (GLUE).
 
+### DeBERTaV3
+Scaling Pre-trained Languagne Models (PLM) to billion paratmers increase their ability in different NLP, NLU tasks. However, training PLMs efficiently with less data can surpass the state of the art as well. Some examples for efficient pre-training of large language models are ROBERTA (increasing the batch size) and ELECTRA (replacing MLM with Replaced Token Detection RTD and also sharing embeddings between the generator and discriminator). The followings are the Loss functions for the generator and the discriminator.
+
+
++ DEBERTA increases the pre-training efficiency by introducing disentagled attention mechanism and Enhanced Masked Decoder. DeBERTaV3 introduces __two new approaches__ for efficient pre-training of large language models
+  + Using RTD where the LLM is the discriminator and the generator replce the some input tokens with their synonyms to confuse the dicsrimintor and the goal of discriminator is to detect whether a token is replaced or no.
+  + 
