@@ -1,17 +1,8 @@
 
-## Table of Contents
-
-* [Introduction](#introduction)
-* [Modifying pre-training objectives](#Modifying_pre-training_objectives)
-    * [ROBERTA](#ROBERTA)
-    * [ELECTRA](#ELECTRA)
-    * [ALBERT](#ALBERT)
-* [Section 2](#section-2)
-* [Conclusion](#conclusion)
 
 
 
-# Introduction (#introduction)
+# Introduction 
 
 Pre-trained language models performance can be improved in different ways:
  
@@ -22,7 +13,7 @@ Pre-trained language models performance can be improved in different ways:
    + _Changing the model size_
    + _Fine-tuning for specific application_
 
-## Modifying pre-training objectives (#Modifying_pre-training_objectives)
+## Modifying pre-training objectives 
 ### ROBERTA (#ROBERTA)
 Autoencoder models such as BERT can undergo various training methods to enhance their effectiveness in downstream tasks. For instance, ROBERTA (Robustly Optimized BERT Approach) alters BERT's training objective in the following way (__indicating the design choice and decisions are important__):
 
@@ -31,7 +22,7 @@ Autoencoder models such as BERT can undergo various training methods to enhance 
  + Dynamic masking after data processing
  + Removing Next Sentence Prediction (NSP)
 
-### ELECTRA (#ELECTRA)
+### ELECTRA 
 + Masked Language Modeling (MLM) approaches, like BERT, typically select a portion of the input sequences (about 15%) and replace certain tokens with a 'MASK' token. The model's task during pre-training is to accurately predict these masked tokens. However, this method has a notable limitation for downstream tasks requiring fine-tuning, as there are no 'mask' tokens in the input sequences during such tasks.
 
  + In contrast, ELECTRA (Efficiently Learning an Encoder that Classifies Token Replacement Accurately) introduces a different strategy. In this approach, for any given input sequence, a smaller MLM model replaces some tokens with other plausible alternatives. Then, a separate network, known as the discriminator, whcih is the encoder of transformer architecture examines each token to determine whether it is a replaced token or not. For example, the input sequence 'The chef cooked the meal" will be trasnformed to "The chef ate the meal" using the generator (some words are replaced by their synonyms. Next, the discrimintaro tag each word with "original" or "replaced". 
@@ -40,7 +31,7 @@ Autoencoder models such as BERT can undergo various training methods to enhance 
 
  + Note that, to compare the complexity for training and inferencing between ELECTRA and basedlines such as BERT, the authors report FLOPS (Floating Point Operations). Note that, FLOPS is not operations at the hardware level, and only mathematical operations count. For example, esp() is considered as a floating point operation.
 
-### ALBERT (#ALBERT)
+### ALBERT 
 Two main challenges in pre-training large models are the memory consumption and the training speed. In practice, however, distill laege models to small ones for downstream applications.
 + One of the way to make memory consumption more efficient is model parallelization where each layer can be trained in a single GPU. Note that, it doesn't solve the training speed.
   
