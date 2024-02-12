@@ -13,7 +13,7 @@ Pre-trained language models performance can be improved in different ways:
    + _Changing the model size_
    + _Fine-tuning for specific application_
 
-## Modifying pre-training objectives 
+## Modifying pre-training objectives for Masked Language Models (MLM)
 ### ROBERTA (#ROBERTA)
 Autoencoder models such as BERT can undergo various training methods to enhance their effectiveness in downstream tasks. For instance, ROBERTA (Robustly Optimized BERT Approach) alters BERT's training objective in the following way (__indicating the design choice and decisions are important__):
 
