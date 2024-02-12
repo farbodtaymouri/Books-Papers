@@ -1,7 +1,5 @@
 
 
-
-
 # Introduction 
 
 Pre-trained language models performance can be improved in different ways:
@@ -88,3 +86,10 @@ Scaling Pre-trained Languagne Models (PLM) to billion paratmers increase their a
 + After pre-training the model is fine-tuned on 8 GLUE tasks for most sentence classification tasks by plugging a classification head on top of the hidden states of the [CLS] token at the last layer.
 + The model also evaluated on NLU datasets such as Question Answering (SQuAD v2), RACE, and NLI tasks such as MNLI and CoNLL.
 
+## Autoregressive Language Models 
+
+### GPT2
++ Traditional Machine Learning systems excell at tasks they are trained for by using a combination of large datasets, high-capacity models, and supervised learning. However, such models are sensitive to slight changes in the data distribution and task specification. These systems are called __narrow experts__.
++  Single task training on single domain datasets is the major contributor of the lack of generalization observed in the current ML systems. Hence Multitask learning is promosing framework for improving general performance.
++  Multi-task learning from a meta-learning perspective needs several paris where a pair contains a single traiing example from the data distribution and objectives. However, current ML systems still need hudreds to thousands examples tp induce a function and generalize well.
++  Language models can be shown to have good performance on down-stream tasks in a zero-shot setting (without any parameter or architecture modification). 
