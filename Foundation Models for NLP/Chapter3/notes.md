@@ -93,6 +93,9 @@ Scaling Pre-trained Languagne Models (PLM) to billion paratmers increase their a
 
 + The traditional NLP examples have inputs $x$ and outputs $y$ and the underlying task $t$, e.g., sentiment analysis, summerization, semantic role labeling, etc., that is provided through __explicit__ modeling.  Meta-learning, Mutli-tasking includes $t$ as a part of inputs. In MQAN, different NLP tasks such as sentiment analysis, summerization, Question answering, and etc, will be represented/formulated using natural language questions. This way, a single model can learn can leverage multitask learning and be able to generalize to completely new tasks.
 + ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/Foundation%20Models%20for%20NLP/image/MQAN.png)
++  decaNLP dataset for multitask learning contains the following tasks where all of them are represented and formulated as question answering:
+  ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/Foundation%20Models%20for%20NLP/image/decaNLP.png)
+
 
 
 
