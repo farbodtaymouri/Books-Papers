@@ -88,6 +88,14 @@ Scaling Pre-trained Languagne Models (PLM) to billion paratmers increase their a
 
 ## Autoregressive Language Models 
 
+
+## Mutlitask Question Answering Network (MQAN)
+
++ The traditional NLP examples have inputs $x$ and outputs $y$ and the underlying task $t$, e.g., sentiment analysis, summerization, semantic role labeling, etc., that is provided through __explicit__ modeling.  Meta-learning, Mutli-tasking includes $t$ as a part of inputs. In MQAN, different NLP tasks such as sentiment analysis, summerization, Question answering, and etc, will be represented/formulated using natural language questions. This way, a single model can learn can leverage multitask learning and be able to generalize to completely new tasks.
++ ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/Foundation%20Models%20for%20NLP/image/MQAN.png)
+
+
+
 ### GPT2
 + Traditional Machine Learning systems excell at tasks they are trained for by using a combination of large datasets, high-capacity models, and supervised learning. However, such models are sensitive to slight changes in the data distribution and task specification. These systems are called __narrow experts__.
 +  Single task training on single domain datasets is the major contributor of the lack of generalization observed in the current ML systems. Hence Multitask learning is promosing framework for improving general performance.
