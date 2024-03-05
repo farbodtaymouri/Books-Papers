@@ -97,7 +97,7 @@ Scaling Pre-trained Languagne Models (PLM) to billion paratmers increase their a
   
   ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/Foundation%20Models%20for%20NLP/image/decaNLP.png)
 
-+ The presented approach uses a combination of BiLSTM with attention layers for training. Since all NLP tasks are presented as batch, the question is should the simpler tasks like sentiment analysis prvoide first compared to harder tasks such as semantic role labeling. This leads to the adoption of curriculum learning where we provide the easiest examples first. Note that, tagging an example as difficult or easy needs to be defined before training. In NLP, among the 10 defined tasks, easy and difficult tasks are already known.
++ The presented approach uses a combination of BiLSTM with attention layers for training. Since all NLP tasks are presented as batch, the question is should the simpler tasks like sentiment analysis prvoide first compared to harder tasks such as semantic role labeling. This is important because some tasks require a larger number of  batch iterations. For example, for sentiment analysis the model converges quicker compared to semantic role labeling. This leads to the adoption of curriculum learning where we provide the easiest examples first. Note that, tagging an example as difficult or easy needs to be defined before training. In NLP, among the 10 defined tasks, easy and difficult tasks are already known.
 
 
 
