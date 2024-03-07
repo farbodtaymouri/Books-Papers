@@ -99,9 +99,16 @@ Scaling Pre-trained Languagne Models (PLM) to billion paratmers increase their a
 
 + The presented approach uses a combination of BiLSTM with attention layers for training. Since all NLP tasks are presented as batch, the question is should the simpler tasks like sentiment analysis prvoide first compared to harder tasks such as semantic role labeling. This is important because some tasks require a larger number of  batch iterations. For example, for sentiment analysis the model converges quicker compared to semantic role labeling. This leads to the adoption of curriculum learning where we provide the easiest examples first. Note that, tagging an example as difficult or easy needs to be defined before training. In NLP, among the 10 defined tasks, easy and difficult tasks are already known.
 
+### GPT (Improving Language Understanding by Generative Pre-Training)
 
++ The goal of GPT model is to train a transformer architecture in unsupervised pre-training and then supervised fine-tuning. The main objective is to learn a universal represeantion that transfers with little adaption to a wide range of tasks. This ia done by utilizing task-specific input adoption where process structred text input as a single contiguous sequence of tokens.
++ This general task-agnostic model outperformas trained models that employ achitectures specifically crafted for each task.
+  
++ The overal framework of pre-training and fine-tuning is first pre-train the model and for each task with minimal modification to the architecture we fine-tine the model. Note that, the paramters of the model during pre-training are not updated during fine-tuning since we add a single layer for fine-tning on spefici tasks.  
+   ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/Foundation%20Models%20for%20NLP/image/GPT_pre_fine_tune.png)
 
-
++ The following diagram shows how the input is strucured for fine-tuning. Note that, in the pre-training phase, only the parameters of the transformer will be updated and after that during fine-tuning phase, the parametersw of liner+softmax layer will be updated.
+![](https://github.com/farbodtaymouri/Books-Papers/blob/main/Foundation%20Models%20for%20NLP/image/GPT_input_seq.png)
 ### GPT2
 + Traditional Machine Learning systems excell at tasks they are trained for by using a combination of large datasets, high-capacity models, and supervised learning. However, such models are sensitive to slight changes in the data distribution and task specification. These systems are called __narrow experts__. The goal is to move towards more general systems which can perform many tasks without the need to manually create and label training data.
 +  Single task training on single domain datasets is the __major contributor of the lack of generalization observed in the current ML systems__. Hence Multitask learning is promosing framework for improving general performance. Recent works suggest that task specific architectures are no longer necessary and transferring many attention blocks is sufficient.
