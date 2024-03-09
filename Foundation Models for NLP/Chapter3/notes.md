@@ -104,11 +104,26 @@ Scaling Pre-trained Languagne Models (PLM) to billion paratmers increase their a
 + The goal of GPT model is to train a transformer architecture in unsupervised pre-training and then supervised fine-tuning. The main objective is to learn a universal represeantion that transfers with little adaption to a wide range of tasks. This ia done by utilizing task-specific input adoption where process structred text input as a single contiguous sequence of tokens.
 + This general task-agnostic model outperformas trained models that employ achitectures specifically crafted for each task.
   
-+ The overal framework of pre-training and fine-tuning is first pre-train the model and for each task with minimal modification to the architecture we fine-tine the model. Note that, the paramters of the model during pre-training are not updated during fine-tuning since we add a single layer for fine-tning on spefici tasks.  
++ The overal framework is first pre-train the model in an unsupervised way using language model loss and then for each NLP task such sentiment analysis, question answering, with minimal modification to the architecture we fine-tine the model. Note that, the paramters of the model during pre-training are not updated during fine-tuning since we add a single layer for fine-tning on spefici tasks.  
    ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/Foundation%20Models%20for%20NLP/image/GPT_pre_fine_tune.png)
 
-+ The following diagram shows how the input is strucured for fine-tuning. Note that, in the pre-training phase, only the parameters of the transformer will be updated and after that during fine-tuning phase, the parametersw of liner+softmax layer will be updated.
++ The following diagram shows how the input is strucured for fine-tuning. Note that, in the pre-training phase, only the parameters of the transformer will be updated and after that during fine-tuning phase, the parametersw of liner+softmax layer will be updated. Another important thing to note, is for each task we separately fine-tnue the model, but this fin-tuning is with minimal modification to the overal architecture.
 ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/Foundation%20Models%20for%20NLP/image/GPT_input_seq.png)
+
+#### Dataset
++ For unsupservised pre-training, the BookCorpus dataset is used. It contains over 7000 unique unpublished books on variety of genres. Another alternative is WordBenchmark but it shuffeled data data at sentence level, thus destroying long-range structure.
++  For supervised fine-tuning, a range of datasets for different NLP tasks were considered
+  +  For natural language inferecne: MNLI, SNLI, QNLI, and RTE
+  +  For Q/A: RACE, SQuaD
+  +  Semnatic Similarity (sentence level): MPRC, QQP
+  +  Classificiation: Identifying whether a sentence is grammatically correct (CoLA), and SST
+#### Analysis
++ Two important analysis in this paper is the study on how the number of transoformer affects the quality of embbedings which has an impact on downstream applications.
+   ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/Foundation%20Models%20for%20NLP/image/GPT_analysis.png)
+  One sees that for RACE dataset, by adding more layers, the accuracy of the model on RACE (classification) inceases.
++ The second study is how the perfromance of the GPT model on downstream tasks improves only using __unsupervised pre-training__. In other words, this task examines the __zero-shot__ ability of the models in handling tasks without having supervised fine-tuning.
+   + From the above picture one sees that the zero-shot ability of both transofrmer and LSTM architectures increases by increasing the number of iterations in unsupervised pre-training. However, an important thing is the LSTM's ability fluctuates more than that of transformers, meaning that the inductive bias (the assumption the model makes about the data during traning and use it for the prediction of unseen instances) of transformers is better than LSTM.
+   + Another study suggests that employing transformers with only supervised fine-tuning without unsupervised pre-training results in poor performance on the specific tasks compared to with pre-training
 ### GPT2
 + Traditional Machine Learning systems excell at tasks they are trained for by using a combination of large datasets, high-capacity models, and supervised learning. However, such models are sensitive to slight changes in the data distribution and task specification. These systems are called __narrow experts__. The goal is to move towards more general systems which can perform many tasks without the need to manually create and label training data.
 +  Single task training on single domain datasets is the __major contributor of the lack of generalization observed in the current ML systems__. Hence Multitask learning is promosing framework for improving general performance. Recent works suggest that task specific architectures are no longer necessary and transferring many attention blocks is sufficient.
