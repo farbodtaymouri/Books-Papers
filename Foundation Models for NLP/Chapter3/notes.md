@@ -139,3 +139,18 @@ Scaling Pre-trained Languagne Models (PLM) to billion paratmers increase their a
 
 #### Model
 GPT2  has very similar architecture to GPT model, i.e., the decorder part of transformers, with some minor modifications. Two layer-normalization are added, one added to the input of each block and the other one added after the final self-attention layer.
+
+#### Evaluation
+The paper created 4 version of GPT based on the number of paramters where the largest one is called GPT2. The authors examined the model's on variaty of NLP tasks. 
+
+##### Lnaguage Modeling
+This task examines the ability of model in __zero-shot__ setting where the model has not been trained or fine tuned on a dataset. The goal is to calculate the respective perplexity for a large number of datasets.
++ LAMBADA: This dataset is extracted from BookCorpus and the challeenge is to understand the long range dependency for predicting the word. More details on https://huggingface.co/datasets/lambada
+     ```markdown
+     ```json
+     {
+       {"category": "Mystery",
+         "text": "bob could have been called in at this point , but he was n't miffed at his exclusion at all . he was relieved at not being brought into this initial discussion with central     command . ''let 's go make some grub , '' said bob as he turned to danny . danny did n't keep his stoic expression , but with a look of irritation got up and left the room with bob",
+       } 
+     }
+ 
