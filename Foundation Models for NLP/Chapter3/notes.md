@@ -161,7 +161,7 @@ This task examines the ability of model in __zero-shot__ setting where the model
      + NE: Where the answeres to the questions are named entities
      + CN: Where the answers to the questions are common nouns
        ```markdown
-       ```jason
+       ```json
        {'answer': 'said', 'options': ['christening', 'existed', 'hear', 'knows', 'read', 'remarked', 'said', 'sitting', 'talking', 'wearing'], 'question': "`` They are very kind old ladies in their way , '' XXXXX the king ; `` and were nice to me when I was a boy . ''", 'sentences': ['This vexed the king even more than the queen , who was very clever and learned , and who had hated dolls when she was a child .', 'However , she , too in spite of all the books she read and all the pictures she painted , would have been glad enough to be the mother of a little prince .', 'The king was anxious to consult the fairies , but the queen would not hear of such a thing .', 'She did not believe in fairies : she said that they had never existed ; and that she maintained , though The History of the Royal Family was full of chapters about nothing else .', 'Well , at long and at last they had a little boy , who was generally regarded as the finest baby that had ever been seen .', 'Even her majesty herself remarked that , though she could never believe all the courtiers told her , yet he certainly was a fine child -- a very fine child .', 'Now , the time drew near for the christening party , and the king and queen were sitting at breakfast in their summer parlour talking over it .', 'It was a splendid room , hung with portraits of the royal ancestors .', 'There was Cinderella , the grandmother of the reigning monarch , with her little foot in her glass slipper thrust out before her .', 'There was the Marquis de Carabas , who , as everyone knows , was raised to the throne as prince consort after his marriage with the daughter of the king of the period .', 'On the arm of the throne was seated his celebrated cat , wearing boots .', 'There , too , was a portrait of a beautiful lady , sound asleep : this was Madame La Belle au Bois-dormant , also an ancestress of the royal family .', 'Many other pictures of celebrated persons were hanging on the walls .', "`` You have asked all the right people , my dear ? ''", 'said the king .', "`` Everyone who should be asked , '' answered the queen .", "`` People are so touchy on these occasions , '' said his majesty .", "`` You have not forgotten any of our aunts ? ''", "`` No ; the old cats ! ''", "replied the queen ; for the king 's aunts were old-fashioned , and did not approve of her , and she knew it ."]
        }
 + For most datasets the GPT models more specifically GPT@, got better results. __Only for 1BW it got worse results because this dataset shuffled the sentences and removed all long-range dependencies__.
@@ -169,6 +169,30 @@ This task examines the ability of model in __zero-shot__ setting where the model
 + For CBT dataset, also one sees that by increasing the model's paramters the model's accuracy getting close to the human level
   ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/Foundation%20Models%20for%20NLP/image/GPT2_CBT.png)
 ##### Windograd Challenge (Commonsense Reasoning)
+A Winograd schema (https://huggingface.co/datasets/winograd_wsc) is a pair of sentences that differ in only one or two words and that contain an ambiguity that is resolved in opposite ways in the two sentences and requires the use of world knowledge and reasoning for its resolution.
+Example:_'The city councilmen refused the demonstrators a permit because they [feared/advocated] violence.'_
+
+```markdown
+```json
+    {'label': 0,
+          'options': ['The city councilmen', 'The demonstrators'],
+          'pronoun': 'they',
+          'pronoun_loc': 63,
+          'quote': 'they feared violence',
+          'quote_loc': 63,
+          'source': '(Winograd 1972)',
+          'text': 'The city councilmen refused the demonstrators a permit because they feared violence.'
+    }
+
+The GPT 2 model improves SOA by %7 for this task in a zero-shut setting.
+
+##### Summarization
+CNN and Daily Mail datasets were used in summarization tasks by adding 'TL', 'DR' before and after the article the model generated 100 tokens summary using top k random sampling with k=2. Although GPT2 model performed well in a zero-shot learning setup, **but it noly paied attention to the very recent part of the text in the article context window. Also, it also showd some confusion on specific details such as how many cars were ininvolved in a crash or whether a logo was hat or shirt.**
+
+ ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/Foundation%20Models%20for%20NLP/image/GPT2_summer.png)
+
+
+
      
 
  
