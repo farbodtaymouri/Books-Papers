@@ -172,19 +172,21 @@ This task examines the ability of model in __zero-shot__ setting where the model
 A Winograd schema (https://huggingface.co/datasets/winograd_wsc) is a pair of sentences that differ in only one or two words and that contain an ambiguity that is resolved in opposite ways in the two sentences and requires the use of world knowledge and reasoning for its resolution.
 Example:_'The city councilmen refused the demonstrators a permit because they [feared/advocated] violence.'_
 
-```markdown
-```json
-    {'label': 0,
-          'options': ['The city councilmen', 'The demonstrators'],
-          'pronoun': 'they',
-          'pronoun_loc': 63,
-          'quote': 'they feared violence',
-          'quote_loc': 63,
-          'source': '(Winograd 1972)',
-          'text': 'The city councilmen refused the demonstrators a permit because they feared violence.'
+    ```markdown
+    ```json
+        {     "label": 0,
+              "options": ["The city councilmen', 'The demonstrators"],
+              "pronoun": "they",
+              "pronoun_loc": 63,
+              "quote": "they feared violence",
+              "quote_loc": 63,
+              "source": "(Winograd 1972)",
+              "text": "The city councilmen refused the demonstrators a permit because they feared violence."
     }
 
-The GPT 2 model improves SOA by %7 for this task in a zero-shut setting.
++ The GPT 2 model improves SOA by %7 for this task in a zero-shut setting.
+
+
 
 ##### Summarization
 CNN and Daily Mail datasets were used in summarization tasks by adding 'TL', 'DR' before and after the article the model generated 100 tokens summary using top k random sampling with k=2. Although GPT2 model performed well in a zero-shot learning setup, **but it noly paied attention to the very recent part of the text in the article context window. Also, it also showd some confusion on specific details such as how many cars were ininvolved in a crash or whether a logo was hat or shirt.**
