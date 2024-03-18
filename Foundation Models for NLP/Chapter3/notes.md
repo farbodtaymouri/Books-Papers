@@ -189,12 +189,25 @@ Example:_'The city councilmen refused the demonstrators a permit because they [f
 
 
 ##### Summarization
-CNN and Daily Mail datasets were used in summarization tasks by adding 'TL', 'DR' before and after the article the model generated 100 tokens summary using top k random sampling with k=2. Although GPT2 model performed well in a zero-shot learning setup, **but it noly paied attention to the very recent part of the text in the article context window. Also, it also showd some confusion on specific details such as how many cars were ininvolved in a crash or whether a logo was hat or shirt.**
+CNN and Daily Mail datasets were used in summarization tasks by adding 'TL', 'DR' before and after the article the model generated 100 tokens summary using top-k random sampling with k=2. Although GPT2 model performed well in a zero-shot learning setup, **but it noly paid attention to the very recent part of the text in the article context window. Also, it also showd some confusion on specific details such as how many cars were ininvolved in a crash or whether a logo was hat or shirt.**
 
  ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/Foundation%20Models%20for%20NLP/image/GPT2_summer.png)
 
+ ##### Question Answering
 
+  + A Potential way to test what information is contained whithin a language model is to evaluate how often it generates the correct answer to factoid-style questions (the kind of questions that needs the naswer of a place, date, locations, and names without provide any opinion or explanation).  __Some studies showed that NNs will keep such information are stored in model's weights__.
 
+ + Similar to the translation task, the model is provided with example question answer paris where it can infer the answer style of the dataset. On SQUAD dataset, the GPT2 model answered %4.2 accurately using exact matching criteria. __Also, it performance is worse on open domain question answering systems which hybridize information retrival with extractive document question answering.__
+   ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/Foundation%20Models%20for%20NLP/image/GPT2_QA.png)
+
+#### Generalization VS Memorization
+
++ In machine learning systems, there is an issue where data leakage might happend between the training and test datasets. Since GPT2 is trained on WebText dataset and tested on other datasets there is a chance that some samples in test datasets were already avilable in WebText dataset. This is important because it results in over-reporting of the generalization performance.
++ To quantify this, the authors used Bloom Filter with 8-grams, where we creat 8-grams for both training dataset and the test datsset and check what percentage of these 8-grams were shared between them. Indeed, the Bloom filter creates a hash number for each 8-grams in the training dataset and check whether it happens in the test dataset. The following table shows the overlapping of 8-grams between the Webtest (training) and other datasets(testing). Also, note that, the paper reported on 8-grams overlapping between train and test datasets in (PTB, 1BW, etc..)
+  ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/Foundation%20Models%20for%20NLP/image/GPT2_bloom.png)
+
+#### Final Notes
+If you are interested, see the appendix of the paper where you can see the model's output on different NLP tasks.
      
 
  
