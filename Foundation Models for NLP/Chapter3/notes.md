@@ -99,7 +99,7 @@ Scaling Pre-trained Languagne Models (PLM) to billion paratmers increase their a
 
 + The presented approach uses a combination of BiLSTM with attention layers for training. Since all NLP tasks are presented as batch, the question is should the simpler tasks like sentiment analysis prvoide first compared to harder tasks such as semantic role labeling. This is important because some tasks require a larger number of  batch iterations. For example, for sentiment analysis the model converges quicker compared to semantic role labeling. This leads to the adoption of curriculum learning where we provide the easiest examples first. Note that, tagging an example as difficult or easy needs to be defined before training. In NLP, among the 10 defined tasks, easy and difficult tasks are already known.
 
-### GPT (Improving Language Understanding by Generative Pre-Training)
+## GPT (Improving Language Understanding by Generative Pre-Training)
 
 + The goal of GPT model is to train a transformer architecture in unsupervised pre-training and then supervised fine-tuning. The main objective is to learn a universal represeantion that transfers with little adaption to a wide range of tasks. This ia done by utilizing task-specific input adoption where process structred text input as a single contiguous sequence of tokens.
 + This general task-agnostic model outperformas trained models that employ achitectures specifically crafted for each task.
@@ -110,21 +110,21 @@ Scaling Pre-trained Languagne Models (PLM) to billion paratmers increase their a
 + The following diagram shows how the input is strucured for fine-tuning. Note that, in the pre-training phase, only the parameters of the transformer will be updated and after that during fine-tuning phase, the parametersw of liner+softmax layer will be updated. Another important thing to note, is for each task we separately fine-tnue the model, but this fin-tuning is with minimal modification to the overal architecture.
 ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/Foundation%20Models%20for%20NLP/image/GPT_input_seq.png)
 
-#### Dataset
+### Dataset
 + For unsupservised pre-training, the BookCorpus dataset is used. It contains over 7000 unique unpublished books on variety of genres. Another alternative is WordBenchmark but it shuffeled data data at sentence level, thus destroying long-range structure.
 +  For supervised fine-tuning, a range of datasets for different NLP tasks were considered
   +  For natural language inferecne: MNLI, SNLI, QNLI, and RTE
   +  For Q/A: RACE, SQuaD
   +  Semnatic Similarity (sentence level): MPRC, QQP
   +  Classificiation: Identifying whether a sentence is grammatically correct (CoLA), and SST
-#### Analysis
+### Analysis
 + Two important analysis in this paper is the study on how the number of transoformer affects the quality of embbedings which has an impact on downstream applications.
    ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/Foundation%20Models%20for%20NLP/image/GPT_analysis.png)
   One sees that for RACE dataset, by adding more layers, the accuracy of the model on RACE (classification) inceases.
 + The second study is how the perfromance of the GPT model on downstream tasks improves only using __unsupervised pre-training__. In other words, this task examines the __zero-shot__ ability of the models in handling tasks without having supervised fine-tuning.
    + From the above picture one sees that the zero-shot ability of both transofrmer and LSTM architectures increases by increasing the number of iterations in unsupervised pre-training. However, an important thing is the LSTM's ability fluctuates more than that of transformers, meaning that the inductive bias (the assumption the model makes about the data during traning and use it for the prediction of unseen instances) of transformers is better than LSTM.
    + Another study suggests that employing transformers with only supervised fine-tuning without unsupervised pre-training results in poor performance on the specific tasks compared to with pre-training
-### GPT2 (Language Models are Unsupervised Multitask Learners)
+## GPT2 (Language Models are Unsupervised Multitask Learners)
 + Traditional Machine Learning systems excell at tasks they are trained for by using a combination of large datasets, high-capacity models, and supervised learning. However, such models are sensitive to slight changes in the data distribution and task specification. These systems are called __narrow experts__. The goal is to move towards more general systems which can perform many tasks without the need to manually create and label training data.
 +  Single task training on single domain datasets is the __major contributor of the lack of generalization observed in the current ML systems__. Hence Multitask learning is promosing framework for improving general performance. Recent works suggest that task specific architectures are no longer necessary and transferring many attention blocks is sufficient.
 +  Multi-task learning from a meta-learning perspective needs several paris where a pair contains a single traiing example from the data distribution and objectives. However, current ML systems still need hudreds to thousands examples tp induce a function and generalize well.
@@ -134,16 +134,16 @@ Scaling Pre-trained Languagne Models (PLM) to billion paratmers increase their a
 
 + However, note that, in MQAN, it was shown that a single model can be trained jointly on different NLP tasks via multi-tasking where each task label is provided as part of the input. __This way, the objective of LLM modeling is side stepped because the focuse is shifted from density estimation to unsupervised learning for converging the objective function for jointly training tasks__.
 
-#### Dataset
+### Dataset
 + Most prior works trained language models on a single domain of text such as Wikipedia or News Articles, the goal for GPT2 is to build a large and diverse dataset as possible to collect natural language demonstrations of tasks (text summerization, sentiment analysis etc.) is as veried domains and contexts. To achieve this, the team scraped the Web. However to get high quality documents, they use outbound links from the Reddit website that recieved 3 or more stars from humans, resulting in 45 million links. They use __Dragnet__ (Extract Next) for extracting the content of HTMLs, and after sum preprocesing the end results is called __WebText__ with 8 million links with the toal of 40GB of data.
 
-#### Model
+### Model
 GPT2  has very similar architecture to GPT model, i.e., the decorder part of transformers, with some minor modifications. Two layer-normalization are added, one added to the input of each block and the other one added after the final self-attention layer.
 
-#### Evaluation
+### Evaluation
 The paper created 4 version of GPT based on the number of paramters where the largest one is called GPT2. The authors examined the model's on variaty of NLP tasks. 
 
-##### Lnaguage Modeling
+#### Lnaguage Modeling
 This task examines the ability of model in __zero-shot__ setting where the model has not been trained or fine tuned on a dataset. The goal is to calculate the respective perplexity for a large number of datasets in a zero-shot setting.
 
 + **LAMBADA**: This dataset is extracted from BookCorpus and the challeenge is to understand the long range dependency for predicting the word. More details on https://huggingface.co/datasets/lambada
@@ -168,7 +168,7 @@ This task examines the ability of model in __zero-shot__ setting where the model
 
 + For CBT dataset, also one sees that by increasing the model's paramters the model's accuracy getting close to the human level
   ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/Foundation%20Models%20for%20NLP/image/GPT2_CBT.png)
-##### Windograd Challenge (Commonsense Reasoning)
+#### Windograd Challenge (Commonsense Reasoning)
 A Winograd schema (https://huggingface.co/datasets/winograd_wsc) is a pair of sentences that differ in only one or two words and that contain an ambiguity that is resolved in opposite ways in the two sentences and requires the use of world knowledge and reasoning for its resolution.
 Example:_'The city councilmen refused the demonstrators a permit because they [feared/advocated] violence.'_
 
@@ -188,25 +188,25 @@ Example:_'The city councilmen refused the demonstrators a permit because they [f
 
 
 
-##### Summarization
+#### Summarization
 CNN and Daily Mail datasets were used in summarization tasks by adding 'TL', 'DR' before and after the article the model generated 100 tokens summary using top-k random sampling with k=2. Although GPT2 model performed well in a zero-shot learning setup, **but it noly paid attention to the very recent part of the text in the article context window. Also, it also showd some confusion on specific details such as how many cars were ininvolved in a crash or whether a logo was hat or shirt.**
 
  ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/Foundation%20Models%20for%20NLP/image/GPT2_summer.png)
 
- ##### Question Answering
+ #### Question Answering
 
   + A Potential way to test what information is contained whithin a language model is to evaluate how often it generates the correct answer to factoid-style questions (the kind of questions that needs the naswer of a place, date, locations, and names without provide any opinion or explanation).  __Some studies showed that NNs will keep such information are stored in model's weights__.
 
  + Similar to the translation task, the model is provided with example question answer paris where it can infer the answer style of the dataset. On SQUAD dataset, the GPT2 model answered %4.2 accurately using exact matching criteria. __Also, it performance is worse on open domain question answering systems which hybridize information retrival with extractive document question answering.__
    ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/Foundation%20Models%20for%20NLP/image/GPT2_QA.png)
 
-#### Generalization VS Memorization
+### Generalization VS Memorization
 
 + In machine learning systems, there is an issue where data leakage might happend between the training and test datasets. Since GPT2 is trained on WebText dataset and tested on other datasets there is a chance that some samples in test datasets were already avilable in WebText dataset. This is important because it results in over-reporting of the generalization performance.
 + To quantify this, the authors used Bloom Filter with 8-grams, where we creat 8-grams for both training dataset and the test datsset and check what percentage of these 8-grams were shared between them. Indeed, the Bloom filter creates a hash number for each 8-grams in the training dataset and check whether it happens in the test dataset. The following table shows the overlapping of 8-grams between the Webtest (training) and other datasets(testing). Also, note that, the paper reported on 8-grams overlapping between train and test datasets in (PTB, 1BW, etc..)
   ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/Foundation%20Models%20for%20NLP/image/GPT2_bloom.png)
 
-#### Final Notes
+### Final Notes
 If you are interested, see the appendix of the paper where you can see the model's output on different NLP tasks.
      
 
