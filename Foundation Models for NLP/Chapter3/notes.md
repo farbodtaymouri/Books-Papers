@@ -209,5 +209,8 @@ CNN and Daily Mail datasets were used in summarization tasks by adding 'TL', 'DR
 ### Final Notes
 If you are interested, see the appendix of the paper where you can see the model's output on different NLP tasks.
      
+## Megatron-LM: Training Multi-Billion Parameter Language Models Using Model Parallelism
+
++ It has been shown that the larger the LLM the better performance on downstream applications. However, training large models faces memory limitation where even the para
 
  
