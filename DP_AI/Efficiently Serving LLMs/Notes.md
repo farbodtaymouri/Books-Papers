@@ -10,3 +10,21 @@ and speed up the __inference__ process.
   ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/DP_AI/Efficiently%20Serving%20LLMs/image/KV_caching.png)
 
 ## Batching for improvinh throughput
+
+```python
+def batch_inference(prompts):
+    responses = openai.Completion.create(
+        engine="text-davinci-003",  # or another version of GPT-3.5
+        prompts=prompts,
+        max_tokens=150,
+        n=1,  # Number of completions generated per prompt
+        stop=None  # Stop sequence, if applicable
+    )
+    return responses
+
+# Helper function to make the messages in the required ChatCompletion format
+def make_messages(system_prompt: str, user_prompt: str) -> str:
+    messages = []
+    messages.append({"role" : "system", "content" : system_prompt})
+    messages.append({"role": "user", "content": ',,'.join(user_prompt) })
+    return messages
