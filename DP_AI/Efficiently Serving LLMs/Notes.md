@@ -8,3 +8,5 @@ and speed up the __inference__ process.
   +  __Also note that, it comes at the cost of keeping two large matrices K and V in the memory and passing to functions__.
  
   ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/DP_AI/Efficiently%20Serving%20LLMs/image/KV_caching.png)
+
+## Batching for improvinh throughput
