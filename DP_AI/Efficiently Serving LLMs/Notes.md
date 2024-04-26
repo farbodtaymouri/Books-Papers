@@ -48,3 +48,17 @@ and speed up the __inference__ process.
       ID_1234: Lower prices, Customer dissatisfaction, Billion dollar profits
       ID_1534: More checkouts, Scan and pack, Open checkouts
       ID_1236: Freezer section, Toilet paper section, Neglected areas
+  ```
+  ## Quantization to Improve Inference Speed
+  
+  + Neural networks and LLMs have a large number of parameters including lots of floating point numbers. most floating point numbers are FP32 meaning that they have one bit for the sign, 8 bit for the exponent (i.e., $2^{(bias-exponent)}$) and 23 bit for mantissa (i.e., the floating point numbers). As one can see using BF16 we can reduce the number of floating points or mantissa but do not change the range of covering numbers. Meaning that we can work with lower precision numbers.
+  
+  ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/DP_AI/Efficiently%20Serving%20LLMs/image/Floating_point.png)
+
++ The purpose of quantization in a neural network is to decrease the precision of the model's weights. This reduction in precision helps to __lower the memory required__ to load the model and __speeds up the computation time__ during both the forward and backward passes. Note that, in some situation, we can dequantize some layers if we want to decrease the error incurred by quantization.
++ Note that the quantization is a lossy compression, meaning that we can not recover the original weights of the model completely.
++ the __zero one__ quantization technique is a method that maps the weights into 0-255 range number, indeed, each weight is first transfer to 0,1 and then scale to 0-255
+  $$z  = \frac{x-min}{max-min} * 255$$
+
+  ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/DP_AI/Efficiently%20Serving%20LLMs/image/zero-one.png)
++ In summary the trained model is quantized first and then it will go into the production. Note that, when we quantize the model we can dequantize some of its layer or all of it using the inverse of the above formula. In some situations, some layers of the model needs to be dequantized to improve the error encountered by compression.
