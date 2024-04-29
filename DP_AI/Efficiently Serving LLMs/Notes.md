@@ -128,3 +128,20 @@ and speed up the __inference__ process.
 ```
 + From the compressed model you can see that the size is reduced 5 times, and the latency time improved arouind 2.5 times and at the same time the model classified it correctly.
 + Note that, there is always a trade-off between the quantization level and the accuracy level accordingly.
+
+## Low Rank Adaptation (LoRA) for Efficient Fine-Tunning 
++ For fine-tuning any large language model (LLM), the standard procedure involves preparing a training set and processing the instances through the model. This involves generating output via a forward pass, followed by calculating gradients and updating the model's weights during a backward pass. If the LLM has billions of parameters, updating each one during every backward pass—which is necessary for computing gradients—becomes costly and inefficient. To tackle this challenge, one can introduce a new set of parameters that approximate the original weight matrix 
+$W$ using lower-rank matrices, effectively 
+$𝑊≈𝐴𝐵$. This approach involves reparameterizing the model by adding new learnable parameters while keeping the original ones fixed.
+  ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/DP_AI/Efficiently%20Serving%20LLMs/image/LoRa.png)
++ There some important things to note, from the above figure note that, for fine-tuning, we add new __learnable__ paramters $A,B$ (low-ranked matrics) to the model, and in the backward pass we only update $A,B$ and $W$ is not changing. When the fin-tuning is finished, we deploy the whole model, including the new paramters $A,B$ into production. The pros and cons of this approach:
+  + Pros:
+    + Allows for efficient fine-tuning with improved speed and lower expenses by only updating the low-rank matrices A and  B.
+    + Rapidly adaptable to new scenarios that require fine-tuning.
+  + Cons:
+    + Increases memory consumption due to the addition of extra variables.
+    + Raises the serving costs because of additional computational requirements for new parameters.
+    + Potentially heightens latency as a result of the new variables, though this can be mitigated with adequate parallelization resources.
+    + It might require larger GPU to mitigate the drop in latency and serving the larger model
++ Indeed, LoRA, is an __affordable__ and __quick fine-tuning method__, however, in long-term fine-tuning the original model might be more beneficial.
++ Note that, this low-rank adaption can be achieved for only a single layer of the model, or all layers.     
