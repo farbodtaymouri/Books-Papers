@@ -144,4 +144,6 @@ $𝑊≈𝐴𝐵$. This approach involves reparameterizing the model by adding n
     + Potentially heightens latency as a result of the new variables, though this can be mitigated with adequate parallelization resources.
     + It might require larger GPU to mitigate the drop in latency and serving the larger model
 + Indeed, LoRA, is an __affordable__ and __quick fine-tuning method__, however, in long-term fine-tuning the original model might be more beneficial.
-+ Note that, this low-rank adaption can be achieved for only a single layer of the model, or all layers.     
++ Note that, this low-rank adaption can be achieved for only a single layer of the model, or all layers.
++ The following code shows how LoRA can be implemented for a specific layer in BERT for fine-tuning.
+        
