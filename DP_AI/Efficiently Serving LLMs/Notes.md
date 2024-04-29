@@ -148,6 +148,7 @@ $𝑊≈𝐴𝐵$. This approach involves reparameterizing the model by adding n
 + Note that, this low-rank adaption can be achieved for only a single layer of the model, or all layers.
 ### Implementation
 + The following code shows how LoRA can be implemented for a specific layer in BERT for fine-tuning.
+  + Initally we set the gradient of the model's paramter to zero as we do not update them. 
 ```python
   
       from transformers import BertModel, BertTokenizer
@@ -161,7 +162,10 @@ $𝑊≈𝐴𝐵$. This approach involves reparameterizing the model by adding n
       # Freeze all original parameters in the model (as we don't update them in LoRA
       for param in model.parameters():
           param.requires_grad = False
-      #------------------------------------------------------------------------------
+```
++ We define a custom class that takes as input the original weights of that layer and create two random (differentiable) matrices and add them togather to create the new LoRA layer and replace it with the original layer in the model. Note that, this class can be re-used for different layers of the model. 
+```python
+
       # Defining our custom class to implement LoRA
       class LoRALayer(nn.Module):
           def __init__(self, original_weight, rank=10):
@@ -193,9 +197,19 @@ $𝑊≈𝐴𝐵$. This approach involves reparameterizing the model by adding n
       lora_query = LoRALayer(original_query_weight)
       attention_layer.query.weight = lora_query.lora_weight()    #Replacing the Original weight with the new one based on LoRA class defined
     #---------------------------------------------------------------------------
+```
++ We can check which paramters of the model will be updated if we train (fine-tune) the model with the modified layers
+```python
     # Freeze all original parameters in the model
     for name, param in model.named_parameters():
         if(param.requires_grad):
           print(name , param.requires_grad)
     >> encoder.layer.0.attention.self.query.weight True
+```
++ Finally, we will update the model's paramter in the fine-tuning step as follow
+```python
+    # Assume 'model' is already defined and parameters have been appropriately set for requires_grad
+    trainable_params = [p for p in model.parameters() if p.requires_grad]
+    optimizer = optim.Adam(trainable_params, lr=1e-5)
+```
               
