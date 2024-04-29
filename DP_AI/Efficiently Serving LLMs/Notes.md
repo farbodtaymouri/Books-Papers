@@ -62,6 +62,7 @@ and speed up the __inference__ process.
 
   ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/DP_AI/Efficiently%20Serving%20LLMs/image/zero-one.png)
 + In summary the trained model is quantized first and then it will go into the production. Note that, when we quantize the model we can dequantize some of its layer or all of it using the inverse of the above formula. In some situations, some layers of the model needs to be dequantized to improve the error encountered by compression.
+### Implementation
 +  Although one can change the dtype of model's weight to quantize them, Pytorch has an interesting library, https://pytorch.org/tutorials/recipes/recipes/dynamic_quantization.html,  where you can use it easily to quantize the whole model, or specific layer types such as liners ones. See the following example where I used DeBERTa for sentiment analysis both in origirnal format and in compressed( quantized one).
 ```python
     
@@ -145,5 +146,56 @@ $𝑊≈𝐴𝐵$. This approach involves reparameterizing the model by adding n
     + It might require larger GPU to mitigate the drop in latency and serving the larger model
 + Indeed, LoRA, is an __affordable__ and __quick fine-tuning method__, however, in long-term fine-tuning the original model might be more beneficial.
 + Note that, this low-rank adaption can be achieved for only a single layer of the model, or all layers.
+### Implementation
 + The following code shows how LoRA can be implemented for a specific layer in BERT for fine-tuning.
-        
+```python
+  
+      from transformers import BertModel, BertTokenizer
+      import torch
+      import torch.nn as nn
+  
+      model_name = 'bert-base-uncased'
+      model = BertModel.from_pretrained(model_name)
+      tokenizer = BertTokenizer.from_pretrained(model_name
+  
+      # Freeze all original parameters in the model (as we don't update them in LoRA
+      for param in model.parameters():
+          param.requires_grad = False
+      #------------------------------------------------------------------------------
+      # Defining our custom class to implement LoRA
+      class LoRALayer(nn.Module):
+          def __init__(self, original_weight, rank=10):
+              super(LoRALayer, self).__init__()
+              self.original_weight = original_weight
+              self.A = nn.Parameter(torch.randn(original_weight.size(1), rank))  #Prameter class allows the variable to be differentiable
+              self.B = nn.Parameter(torch.randn(rank , original_weight.size(0)))
+      
+          def lora_weight(self):
+              # Calculate the low-rank update
+              lora_update = torch.matmul(self.A, self.B)
+
+              # Add the low-rank update to the original weights
+              # The primary purpose of torch.nn.parameter.Parameter is to differentiate regular 
+              #tensors from parameters that should be considered part of the model's trainable weights.
+              new_weight = torch.nn.Parameter( self.original_weight + lora_update)
+              return new_weight
+      
+          
+          def forward(self, x):
+              new_weight = self.lora_weight()
+              return torch.nn.functional.linear(x, new_weight)
+      #---------------------------------------------------------------------------
+      layer_id = 0  # Modify the first layer to be fine-tuaned using LoRA
+      attention_layer = model.encoder.layer[layer_id].attention.self
+      
+      # Replace the original 'query' weight with LoRALayer
+      original_query_weight = attention_layer.query.weight
+      lora_query = LoRALayer(original_query_weight)
+      attention_layer.query.weight = lora_query.lora_weight()    #Replacing the Original weight with the new one based on LoRA class defined
+    #---------------------------------------------------------------------------
+    # Freeze all original parameters in the model
+    for name, param in model.named_parameters():
+        if(param.requires_grad):
+          print(name , param.requires_grad)
+    >> encoder.layer.0.attention.self.query.weight True
+              
