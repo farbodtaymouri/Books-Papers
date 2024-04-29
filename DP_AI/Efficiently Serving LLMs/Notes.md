@@ -1,4 +1,4 @@
-## Text Generation Optimization
+## Serving LLMs efficiently by text Generation Optimization 
 
 ### KV Caching
 + The autoregressive models generate one token at a time and then append it to the input and repeat the process. In this process, whenever we append the generated token to the input,
@@ -9,14 +9,14 @@ and speed up the __inference__ process.
  
   ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/DP_AI/Efficiently%20Serving%20LLMs/image/KV_caching.png)
 
-## Batching for improvinh throughput
+## Batching for improving throughput
 + The whole idea of batching in LLMs is to avoid generating tokens one at the time and we pad all input sequences togather and pad them and then send them to the LLM for processing. This way increase the throughput of the system.
 + __Note that, batching improves the throughput (number of request per minutes) but might affect the latancy. The reason tha the latency increases (geeting response slower) is that in batching even short sequences needs to wait to larger ones to finish their token generations and then the batch results are sent back__.
 
   ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/DP_AI/Efficiently%20Serving%20LLMs/image/batch_llm.png)
 + An example of batching for topic detection in inputs. Note that the __prompts__ paramter in the following code is responsbile to take the input batch as a list of sequences. 
 
-  ```python
+```python
       def batch_inference(prompts):
           responses = openai.Completion.create(
               engine="text-davinci-003",  # or another version of GPT-3.5
@@ -48,7 +48,7 @@ and speed up the __inference__ process.
       ID_1234: Lower prices, Customer dissatisfaction, Billion dollar profits
       ID_1534: More checkouts, Scan and pack, Open checkouts
       ID_1236: Freezer section, Toilet paper section, Neglected areas
-  ```
+```
   ## Quantization to Improve Inference Speed
   
   + Neural networks and LLMs have a large number of parameters including lots of floating point numbers. most floating point numbers are FP32 meaning that they have one bit for the sign, 8 bit for the exponent (i.e., $2^{(bias-exponent)}$) and 23 bit for mantissa (i.e., the floating point numbers). As one can see using BF16 we can reduce the number of floating points or mantissa but do not change the range of covering numbers. Meaning that we can work with lower precision numbers.
@@ -213,4 +213,12 @@ $𝑊≈𝐴𝐵$. This approach involves reparameterizing the model by adding n
     trainable_params = [p for p in model.parameters() if p.requires_grad]
     optimizer = optim.Adam(trainable_params, lr=1e-5)
 ```
-              
+
+## Multi-LoRA Serving Architecture
++LoRA is an effective technique for efficiently fine-tuning large LLMs by training a new set of small, trainable parameters (i.e., low-ranked matrices). The benefits of using LoRA are particularly apparent in enterprise settings in the following scenarios:
+  +An enterprise aims to adapt a base LLM for various use-cases or business divisions.
+  + An enterprise seeks to minimize the costs of fine-tuned models by maintaining a base LLM and only modifying some configurable components.
++ In the scenarios outlined above, the LoRA architecture becomes crucial for deploying an LLM across different applications. Refer to the diagram below:
+  ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/DP_AI/Efficiently%20Serving%20LLMs/image/LoRA_enterprise.png)
++ As illustrated, imagine two hypothetical business units, one focused on pricing and the other on supply chain management. Each unit requires a separate chatbot tailored to respond to specific queries relevant to their operations. By employing LoRA, we can start with a base model and fine-tune it using documents pertinent to each business unit, saving only the LoRA layers for each unit. Upon receiving a request, the relevant LoRA layer is retrieved and integrated into the model to generate a response. This approach allows the use of a single base model supplemented by specific LoRA layers, significantly reducing the complexity and overhead associated with managing separate LLMs for different applications.
++ Please note that one can also employ batch serving or continuous batch serving in parallel with this method
