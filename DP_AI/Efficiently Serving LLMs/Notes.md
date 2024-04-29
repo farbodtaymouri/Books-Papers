@@ -163,7 +163,8 @@ $𝑊≈𝐴𝐵$. This approach involves reparameterizing the model by adding n
       for param in model.parameters():
           param.requires_grad = False
 ```
-+ We define a custom class that takes as input the original weights of that layer and create two random (differentiable) matrices and add them togather to create the new LoRA layer and replace it with the original layer in the model. Note that, this class can be re-used for different layers of the model. 
++ We define a custom class that takes as input the original weights of that layer and create two random (differentiable) matrices and add them togather to create the new LoRA layer and replace it with the original layer in the model. Note that, this class can be re-used for different layers of the model.
+  + Note that, the number of extra paramters are __rank*weight.dim[0]*2__. So the larger the rank of $A$ or $B$ the more extra variables added to the model.   
 ```python
 
       # Defining our custom class to implement LoRA
