@@ -62,3 +62,69 @@ and speed up the __inference__ process.
 
   ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/DP_AI/Efficiently%20Serving%20LLMs/image/zero-one.png)
 + In summary the trained model is quantized first and then it will go into the production. Note that, when we quantize the model we can dequantize some of its layer or all of it using the inverse of the above formula. In some situations, some layers of the model needs to be dequantized to improve the error encountered by compression.
++  Although one can change the dtype of model's weight to quantize them, Pytorch has an interesting library, https://pytorch.org/tutorials/recipes/recipes/dynamic_quantization.html,  where you can use it easily to quantize the whole model, or specific layer types such as liners ones. See the following example where I used DeBERTa for sentiment analysis both in origirnal format and in compressed( quantized one).
+```python
+    
+    from transformers import DebertaV2Tokenizer, DebertaV2ForSequenceClassification
+    import torch
+    
+    # Load the model and tokenizer
+    model_name = 'microsoft/deberta-v2-xlarge'
+    tokenizer = DebertaV2Tokenizer.from_pretrained(model_name)
+    model = DebertaV2ForSequenceClassification.from_pretrained(model_name)
+    
+    # Set the model to evaluation mode
+    model.eval()
+
+    # Defining a function to wrap the model for classification
+    def classify_sentiment(text, model, tokenizer):
+      # Encode the text using the tokenizer
+      encoding = tokenizer(text, return_tensors='pt', padding=True, truncation=True, max_length=512)
+  
+      # Get predictions from the model
+      with torch.no_grad():
+          outputs = model(**encoding)
+  
+      # Process the output to get the predicted class (e.g., positive or negative)
+      probabilities = torch.nn.functional.softmax(outputs.logits, dim=-1)
+      predicted_class = torch.argmax(probabilities, dim=-1)
+  
+      return predicted_class
+    ##########################################################
+     # running the model to get some numbers
+      text = "I love this product!"
+      %timeit prediction = classify_sentiment(text, model, tokenizer)
+      print(' Initial model size in GB:', model.get_memory_footprint()/(1024*1024*1024))
+      print(f'Prediction: {prediction}')
+
+      >> 3.53 s ± 964 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+      >> Initial model size in GB: 3.304176338016987
+      >> Prediction: tensor([0]
+
+```
++ As you can see from the above code the original model has __3.53 GB__ size and the __latency time__ for classifiying an example is __3.53 s__. Now, lets quantize it by compressing only the linear layersffrom FP32 to int8 and serve the compressed model using the same example:
+```python
+
+    #Quantizing the model
+    from torch.quantization import quantize_dynamic
+    
+    # Specify the layers you want to dynamically quantize
+    # Typically, quantizing the Linear layers yields significant performance improvements
+    model_quantized = quantize_dynamic(
+        model, 
+        {torch.nn.Linear},  # Targeting linear layers for quantization
+        dtype=torch.qint8    # Using 8-bit integers
+    )
+   ######################################
+  # Test the function
+    print(' Compressed model size in GB:', model_quantized.get_memory_footprint()/(1024*1024*1024))
+    text = "I love this product!"
+    %timeit prediction = classify_sentiment(text, model_quantized, tokenizer)
+    print(f'Prediction: {prediction}')
+
+    >> Compressed model size in GB: 0.7628841400146484
+    >> 1.67 s ± 269 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+    >> Prediction: tensor([0])
+```
++ From the compressed model you can see that the size is reduced 5 times, and the latency time improved arouind 2.5 times and at the same time the model classified it correctly.
++ Note that, there is always a trade-off between the quantization level and the accuracy level accordingly.
