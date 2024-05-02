@@ -221,4 +221,49 @@ $𝑊≈𝐴𝐵$. This approach involves reparameterizing the model by adding n
 + In the scenarios outlined above, the LoRA architecture becomes crucial for deploying an LLM across different applications. Refer to the diagram below:
   ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/DP_AI/Efficiently%20Serving%20LLMs/image/LoRA_enterprise.png)
 + As illustrated, imagine two hypothetical business units, one focused on pricing and the other on supply chain management. Each unit requires a separate chatbot tailored to respond to specific queries relevant to their operations. By employing LoRA, we can start with a base model and fine-tune it using documents pertinent to each business unit, saving only the LoRA layers for each unit. Upon receiving a request, the relevant LoRA layer is retrieved and integrated into the model to generate a response. This approach allows the use of a single base model supplemented by specific LoRA layers, significantly reducing the complexity and overhead associated with managing separate LLMs for different applications.
-+ Please note that one can also employ batch serving or continuous batch serving in parallel with this method
++ Please note that one can also employ batch serving or continuous batch serving in parallel with this method.
+
+## LoRAX (A framework for efficiently serving fine-tined LLMs)
++ Usually, at the enteprise level it is difficutl to deploy a multiobillion paramter LLMs for each task as it is costly and not efficent in terms of serving. LoRAX is a framework to efficently serving several LLMs or fine-tined version of a base LLM for different purposes such as text summarization and sentiment analysis.
+import time
+import openai
+import asyncio
+
+# Initialize duration lists
+durations_s = [[] for _ in range(3)]
+
+# List of questions
+questions = [
+    "If you could have dinner with any historical figure, who would it be and why?",
+    "What is one technological innovation you believe will have the most impact on society in the next decade?",
+    "If you had to live in another country for a year, which one would you choose and what would you most look forward to experiencing there?"
+]
+
+async def run(max_new_tokens, i):
+    start_time = time.time()
+    for q in questions:
+        # Await the response directly, as create returns a single response
+        response = await async_client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are a friendly chatbot who always responds in the style of a pirate",
+                },
+                {"role": "user", "content": q},
+            ],
+            max_tokens=max_new_tokens
+        )
+        
+        # Calculate the time taken and print the response
+        durations_s[i].append(time.time() - start_time)
+        print("Question:",q, "\n response:", response.choices[0].message.content)
+
+# Execution
+async def main():
+    start_time = time.time()
+    max_tokens_list = [100, 10, 10]
+    await asyncio.gather(*[run(max_new_tokens, i) for i, max_new_tokens in enumerate(max_tokens_list)])
+
+# Run the main async function
+await main()
