@@ -229,6 +229,25 @@ import time
 import openai
 import asyncio
 
+OPENAI_API_KEY=
+
+import asyncio
+import json
+import time
+from typing import List
+
+import matplotlib.pyplot as plt
+from tqdm.notebook import tqdm
+from pydantic import BaseModel, constr
+
+from openai import OpenAI
+client = OpenAI(api_key=OPENAI_API_KEY)
+
+from openai import AsyncOpenAI
+async_client = AsyncOpenAI(api_key=OPENAI_API_KEY)
+
+
+
 # Initialize duration lists
 durations_s = [[] for _ in range(3)]
 
