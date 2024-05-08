@@ -223,51 +223,34 @@ $𝑊≈𝐴𝐵$. This approach involves reparameterizing the model by adding n
 + As illustrated, imagine two hypothetical business units, one focused on pricing and the other on supply chain management. Each unit requires a separate chatbot tailored to respond to specific queries relevant to their operations. By employing LoRA, we can start with a base model and fine-tune it using documents pertinent to each business unit, saving only the LoRA layers for each unit. Upon receiving a request, the relevant LoRA layer is retrieved and integrated into the model to generate a response. This approach allows the use of a single base model supplemented by specific LoRA layers, significantly reducing the complexity and overhead associated with managing separate LLMs for different applications.
 + Please note that one can also employ batch serving or continuous batch serving in parallel with this method.
 
-## LoRAX (A framework for efficiently serving fine-tined LLMs)
-+ Usually, at the enteprise level it is difficutl to deploy a multiobillion paramter LLMs for each task as it is costly and not efficent in terms of serving. LoRAX is a framework to efficently serving several LLMs or fine-tined version of a base LLM for different purposes such as text summarization and sentiment analysis.
-import time
-import openai
-import asyncio
+## Cuncurrent API Call
++ When a machine learning model or a large language model (LLM) is made available through an API, it can be accessed using two key parameters: the API_URL, which specifies the deployment location, and Headers, which contain crucial details for authorization and other parameters. In many practical scenarios, waiting for a response for a single instance can be time-consuming and may delay responses for other instances. This calling pattern is sequential, as each instance must be processed one after the other. To enhance the model's throughput in such scenarios, the API can handle multiple instances concurrently without blocking. This can be efficiently achieved using the 'asyncio' package in Python. Below are two examples demonstrating this.
+### Calling OpenAI
++ In this example, we call OpenAI in a sequential (tradiantil) way for summerizing three questions first, then make it concurrent.
+```python
+    OPENAI_API_KEY = ""
 
-OPENAI_API_KEY=
+    from openai import OpenAI
+    import time
 
-import asyncio
-import json
-import time
-from typing import List
-
-import matplotlib.pyplot as plt
-from tqdm.notebook import tqdm
-from pydantic import BaseModel, constr
-
-from openai import OpenAI
-client = OpenAI(api_key=OPENAI_API_KEY)
-
-from openai import AsyncOpenAI
-async_client = AsyncOpenAI(api_key=OPENAI_API_KEY)
-
-
-
-# Initialize duration lists
-durations_s = [[] for _ in range(3)]
-
-# List of questions
-questions = [
-    "If you could have dinner with any historical figure, who would it be and why?",
-    "What is one technological innovation you believe will have the most impact on society in the next decade?",
-    "If you had to live in another country for a year, which one would you choose and what would you most look forward to experiencing there?"
-]
-
-async def run(max_new_tokens, i):
-    start_time = time.time()
-    for q in questions:
-        # Await the response directly, as create returns a single response
-        response = await async_client.chat.completions.create(
+    client = OpenAI(api_key=OPENAI_API_KEY)
+    
+    # List of questions
+    questions = [
+        "If you could have dinner with any historical figure, who would it be and why?",
+        "What is one technological innovation you believe will have the most impact on society in the next decade?",
+        "If you had to live in another country for a year, which one would you choose and what would you most look forward to experiencing there?"
+    ]
+    
+    def run(q, max_new_tokens):
+        start_time = time.time()
+        # Getting response directly, as create returns a single response
+        response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
                 {
                     "role": "system",
-                    "content": "You are a friendly chatbot who always responds in the style of a pirate",
+                    "content": "Summerize each input",
                 },
                 {"role": "user", "content": q},
             ],
@@ -275,14 +258,198 @@ async def run(max_new_tokens, i):
         )
         
         # Calculate the time taken and print the response
-        durations_s[i].append(time.time() - start_time)
         print("Question:",q, "\n response:", response.choices[0].message.content)
+    
+    # Execution
+    def main():
+        [run(q,100) for q in questions]
+    
+    # Run the main async function
+    t0 = time.time()
+    main()
+    print(f"Total time taken: {time.time() - t0}")
+    ################################################
+    >>
+    Question: If you could have dinner with any historical figure, who would it be and why? 
+     response: Question about which historical figure one would choose to have dinner with and why.
+    Question: What is one technological innovation you believe will have the most impact on society in the next decade? 
+     response: One technological innovation that I believe will have the most impact on society in the next decade is artificial intelligence. AI is already being integrated into various   
+     industries and has the potential to transform the way we work, communicate, and live. Its applications range from healthcare and transportation to finance and entertainment, making it a 
+     truly transformative technology with wide-reaching implications for society.
+    Question: If you had to live in another country for a year, which one would you choose and what would you most look forward to experiencing there? 
+     response: Choosing to live in another country for a year can be an exciting opportunity to immerse oneself in a new culture. The country chosen would likely depend on personal preferences 
+     such as language, climate, and cultural experiences. People may look forward to experiencing new cuisines, traditions, landscapes, languages, and making new friends.
+    
+    
+    Total time taken: 4.841410875320435
+```
+As you can see to total running time is around 5 seconds for sequential call for summerizing three questions.
++ Now we use __asyncio__ package to make cuncurrent call
+```python
+    OPENAI_API_KEY = ""
 
-# Execution
-async def main():
-    start_time = time.time()
-    max_tokens_list = [100, 10, 10]
-    await asyncio.gather(*[run(max_new_tokens, i) for i, max_new_tokens in enumerate(max_tokens_list)])
+    # OpenaI has its own interface for async call to make life easier for developers
+    from openai import AsyncOpenAI
+    async_client = AsyncOpenAI(api_key=OPENAI_API_KEY)
 
-# Run the main async function
-await main()
+    
+    # List of questions
+    questions = [
+        "If you could have dinner with any historical figure, who would it be and why?",
+        "What is one technological innovation you believe will have the most impact on society in the next decade?",
+        "If you had to live in another country for a year, which one would you choose and what would you most look forward to experiencing there?"
+    ]
+
+    # Creating a co-routin (it is like a method)
+    async def run(q, max_new_tokens):
+        start_time = time.time()
+        # Await the response directly, as create returns a single response
+        response = await async_client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "Summerize each input",
+                },
+                {"role": "user", "content": q},
+            ],
+            max_tokens=max_new_tokens
+        )
+        
+        # Calculate the time taken and print the response
+        print("Question:",q, "\n response:", response.choices[0].message.content)
+    
+    # Execution
+    async def main():
+        # Creating a list of co-routines. Note that co-routines do not run like function immediately by calling their names
+        tasks = [run(q,100) for q in questions]
+        # gather() will run co-routines
+        await asyncio.gather(*tasks)
+    
+    # Run the main async function
+    t0 = time.time()
+    await main()
+    print(f"Total time taken: {time.time() - t0}")
+    #########################################################################
+    Question: What is one technological innovation you believe will have the most impact on society in the next decade? 
+     response: The most impactful technological innovation in the next decade is likely to be artificial intelligence.
+    Question: If you could have dinner with any historical figure, who would it be and why? 
+     response: This input is asking about a person's choice of which historical figure they would like to have dinner with and the reasons behind this choice.
+    Question: If you had to live in another country for a year, which one would you choose and what would you most look forward to experiencing there? 
+     response: Input: Hypothetical scenario of living in another country for a year and choosing a country to live in and experience.
+    Summary: Choosing another country to live in for a year and looking forward to experiencing new culture, language, cuisine, landscapes, and lifestyle.
+
+    Total time taken: 1.8347806930541992
+```
+__As you can see the total execution time has reduced from 4.8 to 1.8 which is impressive improvement.__
+
+### Calling BERT
++ As explained, earlier this pattern can be used for any deployed model. Here we show how a deployed BERT model in HuggingFace can be called both sequential and cuncurrent for a sentiment analysis task.
+```python
+    import aiohttp
+    import asyncio
+    import time
+    import requests
+    
+    API_URL = "https://api-inference.huggingface.co/models/nlptown/bert-base-multilingual-uncased-sentiment"
+    headers = {"Authorization": "Bearer hf_xxxxxxxxxxxxxxxxxx"}    #Sign in into HF to get Bearer
+    
+    def query(payload):
+        t0 = time.time()
+        # with aiohttp.ClientSession() as session:
+        with requests.post(API_URL, headers=headers, json=payload) as response:
+            t0 = time.time() - t0
+            print(f"Time taken: {t0}")
+            return response.json()
+    def main():
+        # Example of concurrent requests
+        inputs = [
+            {"inputs": "I like you. I love you"},
+            {"inputs": "This is another example."},
+            {"inputs": "How does this model work with multiple languages?"}
+        ]
+        
+        # Gather all tasks and run them concurrently
+        tasks = [query(input) for input in inputs]
+        # results = await asyncio.gather(*tasks)
+        
+        # Print results
+        for result in tasks:
+            print(result)
+    
+    # Run the asynchronous main function
+    # if __name__ == "__main__":
+    #     asyncio.run(main())
+    %time main()
+    ################################################################
+    >>
+    Time taken: 0.8890035152435303
+    Time taken: 0.7457528114318848
+    Time taken: 0.6871185302734375
+    [[{'label': '5 stars', 'score': 0.7865124344825745}, {'label': '4 stars', 'score': 0.19356317818164825}, {'label': '3 stars', 'score': 0.015475981868803501}, {'label': '2 stars', 'score': 
+     0.0022533731535077095}, {'label': '1 star', 'score': 0.00219502835534513}]]
+    [[{'label': '3 stars', 'score': 0.277286171913147}, {'label': '4 stars', 'score': 0.2609689235687256}, {'label': '5 stars', 'score': 0.2045573890209198}, {'label': '1 star', 'score': 
+     0.12992483377456665}, {'label': '2 stars', 'score': 0.12726274132728577}]]
+    [[{'label': '3 stars', 'score': 0.2840403914451599}, {'label': '2 stars', 'score': 0.23711605370044708}, {'label': '1 star', 'score': 0.18157868087291718}, {'label': '4 stars', 'score': 
+     0.17220677435398102}, {'label': '5 stars', 'score': 0.1250580996274948}]]
+    CPU times: user 349 ms, sys: 959 µs, total: 350 ms
+    Wall time: 2.33 s
+```
++ As one sees the total processing time is 2.33 and the processing time for each question is around 0.7s. Now we use to package __asyncio__ and __aiohttp__ to create cuncrurrent sessions and call the model
+```python
+      import aiohttp
+      import asyncio
+      import time
+      
+      API_URL = "https://api-inference.huggingface.co/models/nlptown/bert-base-multilingual-uncased-sentiment"
+      headers = {"Authorization": "Bearer hf_xxxxxxxxxxxxxxxxxx"}    #Sign in into HF to get Bearer
+      
+      async def query(payload):
+          t0 = time.time()
+          async with aiohttp.ClientSession() as session:
+              async with session.post(API_URL, headers=headers, json=payload) as response:
+                  t0 = time.time() - t0
+                  print(f"Time taken: {t0}")
+                  return await response.json()
+      
+      async def main():
+          # Example of concurrent requests
+          inputs = [
+              {"inputs": "I like you. I love you"},
+              {"inputs": "This is another example."},
+              {"inputs": "How does this model work with multiple languages?"}
+          ]
+          
+          # Gather all tasks and run them concurrently
+          tasks = [query(input) for input in inputs]
+          results = await asyncio.gather(*tasks)
+          
+          # Print results
+          for result in results:
+              print(result)
+      
+      # Run the asynchronous main function (this is from terminal)
+      # if __name__ == "__main__":
+      #     asyncio.run(main())
+      t0 = time.time()
+      await main()
+      print(f"Total time taken: {time.time() - t0}")
+      #####################################################
+      >>
+      Time taken: 0.6031255722045898
+      Time taken: 0.6050739288330078
+      Time taken: 0.7001621723175049
+      [[{'label': '5 stars', 'score': 0.7865124344825745}, {'label': '4 stars', 'score': 0.19356317818164825}, {'label': '3 stars', 'score': 0.015475981868803501}, {'label': '2 stars', 'score': 
+       0.0022533731535077095}, {'label': '1 star', 'score': 0.00219502835534513}]]
+      [[{'label': '3 stars', 'score': 0.277286171913147}, {'label': '4 stars', 'score': 0.2609689235687256}, {'label': '5 stars', 'score': 0.2045573890209198}, {'label': '1 star', 'score': 
+       0.12992483377456665}, {'label': '2 stars', 'score': 0.12726274132728577}]]
+      [[{'label': '3 stars', 'score': 0.2840403914451599}, {'label': '2 stars', 'score': 0.23711605370044708}, {'label': '1 star', 'score': 0.18157868087291718}, {'label': '4 stars', 'score': 
+      0.17220677435398102}, {'label': '5 stars', 'score': 0.1250580996274948}]]
+      Total time taken: 0.7031946182250977
+```
++ __As one can see the total execution time dropped from 2.33 to 0.7s after using cuncurrent call__.
+
+
+
+
+## LoRAX (A framework for efficiently serving fine-tined LLMs)
