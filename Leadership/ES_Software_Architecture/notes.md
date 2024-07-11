@@ -14,5 +14,15 @@
 * Not everyone will be happy all the time. You will make hard decisions.
     * Don't be afraid to ask for what you really want, you might actually get it.
 * __Success at Politics = Gracious Behavior + Communication + Negotiation + Leadership__
-* 
+
+# Chapter 11 Pragmatism
+
+* The job of an architect is to hold vision in one hand and the reality in the other hand, and to bring them together.
+* __Pragmatic architecture__ is the notiation of driving toward the architectural vision whicke constraining projects to reality (tacticals)
+   * It can be achieved through risk management, scope management and comminication
+* Assume that you have a new project proposal that need to be delivered in 4 month and it brings lots of benefits for the company. You have three alternative architects and you have three days to come up with, __resource needs estimate, risk estimates, key assumptions and review the proposal with the affected people.__
+  * Using a new open-sources technologies which the company has no experience
+  * Developing everything from scratch that needs to be integrated with legacy systems
+  * Hacking the legacy system but it might be gragile under heavy useage.
+*  
 
