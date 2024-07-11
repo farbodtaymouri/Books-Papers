@@ -47,9 +47,20 @@
   * Does the project requires specific software packages?
 *  __One way to increase the feasibility of the project to minimize the number of new things__ (services, technologies) you are injecting into the organization or to sequence thechanges in a stable manner. Note that, bringin in new things is fun, but trying to get them operationalized is nearly always a challenge.
 *  Note that as an architect whenever you make any decision, __assess the risk__ and the __impact__ of that decision by asking the following questions (e.g., via KDD):
-  * What are the operational implication of this decision?
-  * Does it enable the project the meet it's delivery faster?
-  * Will the quality of the project affected?
-  * What are the maintenace cost of implication of this decision?
-  * What are the development cost of this decision?
+   * What are the operational implication of this decision?
+   * Does it enable the project the meet it's delivery faster?
+   * Will the quality of the project affected?
+   * What are the maintenace cost of implication of this decision?
+   * What are the development cost of this decision?
+* Note that the number of risks associated with a project might be high. However, focus on the risks that has high chance of happening -such as a new technology failing to deliver, a dependent project failing to deliver. As an architect you should have the ability to plan on how to address them and which alternatives must be considred if and when they happen.
+* Another way to manage the risk when you need to make a decision about the feasibility of a particualt architectural approach (i.e., using AI search in the chatbot). __Take time to do a time-bounded architectural spike (PoC)__.Also consider the following guidlines:
+  * Place time-boundary on investigation
+  * Understand the key elements that require investigation
+  * Avoid the spike to turn into the real solution
+  * Document the results
+  * Get the right resources
+ ## Communication
+ * The thid key area of pragmatic architecture is comminication. The architect must have a __clear, consistent, and continuous__ communication. Note that, any communication gap will be filled by others so __stay on top of the comminication process ecven if you are extraordineray busy__.
+ * Note that, when a software is built only a limited variability and flexibility can be realized. Take time to document decisions along the way. Ensure that the decision log is properly distributed so that there is no surprise.
+ * Whenever you present alternatives as part of making decision, your ability to clearly articulate the avilable options and which one you recommend will produce a great starting point for a conversation. Don't be afraid of the solution you recommend and show you have a detaild analysis about that decision. __If the don't accepted your recommended solution, owns the one they recommend but make sure the decision makers understand the consequence of that decision (delay, cost, tech debt, etc.)__
 
