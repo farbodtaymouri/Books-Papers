@@ -19,9 +19,9 @@
 
 * The job of an architect is to hold vision in one hand and the reality in the other hand, and to bring them together.
 * __Pragmatic architecture__ is the notiation of driving toward the architectural vision whicke constraining projects to reality (tacticals). It can be achieved through
-   * Risk management,
-   * Scope management and
-   * Communication
+   * __Risk management__,
+   * __Scope management and__,
+   * __Communication__
 * Assume that you have a new project proposal that need to be delivered in 4 month and it brings lots of benefits for the company. You have three alternative architects and you have three days to come up with, __resource needs estimate, risk estimates, key assumptions and review the proposal with the affected people.__
   * Using a new open-sources technologies which the company has no experience
   * Developing everything from scratch that needs to be integrated with legacy systems
@@ -32,4 +32,24 @@
 * Think of features as tack of cards. Priortize them in the order of customer value. This way you can execute/deliver the highest customer value earlier.
 * As an architect you always have to deal with ambiguity and the more information you have the more precise decision you can make about the architecture of the project. However, no matter how many detials you seek, there will always be a level of ambiguity in decision making. The challenge is to get to a point where you are comfortable with the ambiguity and allow the project to move forward.
 * To apply scope management in pragmatic architecture, you need to use agile process such as scrum or lean. Agile process lets architect to focus on the parts with les ambiguity and push ambigous parts of the project to the backlog where more information become avaialbe to address them in the next iterations or as part of the spike (time-bounded PoC). The challenge with the agile develoment method is to ensure you have some level of focus on the overall roadmap and product release. Note that the architecture of the project needs to be addressed but it doesn't need to be upfront.
+## Risk Management
+* The second key area of pragmatic architecture is the risk management. It is good to spend time early at the discovery phase of the project to identify, document and mitigate as many as potential risks as possible.
+* __For any architectural approach there are a range of possible implenetations__. You need to ask the following questions to understand the difference between possible and feasible:
+  * Which resource will implement that? Do they need training
+  * Has this architectural pattern already implemented in the company, industry?
+  * Which architectural spike might be needed to remove any high-level risks?
+  * Do you understand the nature of sclaing the solution? (From the application server, database server, network perspective, queuing perspective)
+  * Do you have  or can you build appropriate tool to monitor that?
+  * Have you accounted for any reporting needs?
+  * Are there any legal or regulatory issues (RAI)?
+  * Do you understand when the project needs to be delivered?
+  * How does this project align with the companis strategic long-term goals?
+  * Does the project requires specific software packages?
+*  __One way to increase the feasibility of the project to minimize the number of new things__ (services, technologies) you are injecting into the organization or to sequence thechanges in a stable manner. Note that, bringin in new things is fun, but trying to get them operationalized is nearly always a challenge.
+*  Note that as an architect whenever you make any decision, __assess the risk__ and the __impact__ of that decision by asking the following questions (e.g., via KDD):
+  * What are the operational implication of this decision?
+  * Does it enable the project the meet it's delivery faster?
+  * Will the quality of the project affected?
+  * What are the maintenace cost of implication of this decision?
+  * What are the development cost of this decision?
 
