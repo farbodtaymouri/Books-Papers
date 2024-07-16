@@ -65,5 +65,30 @@
  * Whenever you present alternatives as part of making decision, your ability to clearly articulate the avilable options and which one you recommend will produce a great starting point for a conversation. Don't be afraid of the solution you recommend and show you have a detaild analysis about that decision. __If the don't accepted your recommended solution, owns the one they recommend but make sure the decision makers understand the consequence of that decision (delay, cost, tech debt, etc.)__
 
 # Chapter 12 Vision
-Vision drives how you think,what you do
+* Vision drives how you think,what you do, how you do it.
+* Vision is a mental image or state that represent the ideal __end state__ that can be used for focusing and aligning everyhting you seek to accomplish.
+* In order to have vision, three things need to be considered
+    * Compelling Destination
+    * Strategic Roadmap
+    * Aligned Partners
+ ## Finding and Establishing a Compelling Destination
+ * In order to find a compelling destination for your vision, you need first to
+    * __Discover your vision__: Vision is not something clear at the beginning, and it needs brainstorming. The following questions help to discover the vision:
+      * Wrtie down your thouts and idead
+      * Create a diagram that capture the essense of your ideas
+      * Is the vision is to concrete or some level of ambiguity is there
+      * Is there any particular problem you want to solve?
+      * Is there any particular customer base you are trying to drill? Is it based on the customers you have today or is it something you want to move into adjacent market?
+      * Is your vision realted to the overall company vision?
+      * Is your vision related  to the product market or technology space? In general, the company vision can be devided into categories such as, product vision, technollogy vision, market vision, operation vision, etc
+      * 
+   * __Craft your compelling story from your vague facts__ : Developing a vision is hard becasue you need to combine what appear as independent facts and insights into a compelling story. Note that these facts and insights begin to emerge from spending time in fields you are passionate about. Note that when your compelling story start to emerge you need to consider the following questions
+      * Does the emerging technology in industry relate to your vision?
+      * What do you see as big opportunies and what are the risks?
+      * Have you put them in a white paper or presenation?
+    * __Overcomming the roadblocks__: You might encounter challenges in trying to formulate a vision. If you realize things are not coalsec (combine and comes as a whole), then consider the following questions. Also beware of the roadblocks as they emerge and priortize their importance against the overal goal you are trying to achieve:
+      * What is the specific roadblock you are encountering?
+      * Are there parts of the vision that you are avoiding?
+      * How can you move or remove around the roadblock?
+        
 
