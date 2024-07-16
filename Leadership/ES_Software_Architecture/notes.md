@@ -67,7 +67,7 @@
 # Chapter 12 Vision
 * Vision drives how you think,what you do, how you do it.
 * Vision is a mental image or state that represent the ideal __end state__ that can be used for focusing and aligning everyhting you seek to accomplish.
-* In order to have vision, three things need to be considered
+* In order to have vision, three elements need to be considered
     * Compelling Destination
     * Strategic Roadmap
     * Aligned Partners
@@ -90,5 +90,44 @@
       * What is the specific roadblock you are encountering?
       * Are there parts of the vision that you are avoiding?
       * How can you move or remove around the roadblock?
-        
+ ## Developing and Establishing a Strategic roadmap
+ * After discovering and establishing your vision with full of context (compelling stories). The next step is to define a road map that takes you and your compeany from the current state to the ideal state you defined in your vision.
+ ### Managing the route to the vision
+ * When you look at the vision and the way to implement it, then it might be difficult. Try to do it step by step tworads the ideal state even if it is inaccurate as you will adjust it later. To build the roadmap try to consider the following questions:
+   *  How big is your vision? Will it take 9 months to acheve or 9 years? Smaller visions is easier to impement and to get to the ideal state comapred to the larger vision which might be very ambigous. In contrast, larger visions will keep the momentum you created for the vision.
+   *  what are the fundamental steps that need to be met before starting the road map. Try to complete them before the roadmap gets started
+   *  What steps are easier to achieve? Sequence them at the beginning of the road map
+   *  What steps are the most vague ones that need more research and investigations? Try to push them towards the end of the road map implementation to have more time to explore them
+   *  Can you define the steps in shrtoly manner?
+   *  Can you create a one page diagram?
+ ## Stablishing the Strategies to Support the Vision
+ * Strategies are the plan of actions that take you from the current state to the target ideal state in your vision. Note that, vision is the state but strategies are plannings.  When you develop strategies, the need to be well known and publicly availble to the teams that will be working on projects assocciated with your vision. The strategies allow the others to make decisions that are in alignment with your vision even if you are absent.
+ * An example to explain the vision and strategy is:
+   * Vision: To be the leader in sustainbale energy in the market
+   * Strategy: __To become__ the most sustainble company in the market in the next 5 years by focusing R&D projects, partnership and aquisitions
+ * When you develop strategies (Action plans), consider the following questions:
+   * which pattern you want to repeat through your vision, strategy and design? (example, what repeatable patterns would you want in developing strategies for Data Science projects)
+   * Is vision eveolving? If yes, what factors will affect it?
+   * Are there enabling technologies that need development?
+   * Is the open-source adoption a key element of your plan?
+   * Do you need the required skill set to realize your vision? 
+ ## Establishing Aligned Partners
+ * In order to put your vision and developed strategies into action, you need to work on three elements:
+   * __Alignments__: As your vision expand its boundaries, more people will be involved and aligning the steps of the developed roadmap with their concerns will help you to sell your vision. Consider to answer the following question (to other parties) if __expansion happnes__:
+     * Where are your custoemrs trying to go?
+     * What your customers willing to pay?
+     * What is the current level of commitment within your organization toward the proposed vision? Do executives support it?
+     * Who are the caretakers or the company's or division's vision? What are their thoughts in supporintg your vision?
+     * Are there any areas that are out of missalignment? If yes, you might postone it in the vision to remove the obstacle.
+     * Is your vision is relevant to the marketplace or is it out of date? If it is aged, what aspect of the market place is shifted? Is it because of a new technology? Customers? 
+   * __Partnership__: From an __architecture perspective, architects rarely oen anything__. Instead, they only lever they apply to accomplish things is by establshment of vision. That is they craft convinsing story/visions around __product capabilites, development activites, and cosntrcution of a particular project or program__.
+     * The reality of a vision can be significantly magnified if the partnerships can be made with key stakeholders since stakeholders often have political influence. The challenge is to find and partner with the right key stakeholders to support your vision and funding you need to move forward.
+     *  
+   * __Funding__: Establising a vision and developing the strategic roadmap is fun but without funding you can not realize your vision. When you partner with a key stakeholder to align with your vision and provide the support funding support, consider the folloqing questions:
+     * Who needs to approve your vision to gain financial support?
+     * Are you in the position to seek funding? If not who should you partner with?
+     * What business value will be reached by realizing your vision? What is ROI?
+     * How much time do you need to implement the vision? How much time to achieve the first step in the developed roadmap?
+     * what is the minimum amount of investment you require to seed your vision?
+         
 
