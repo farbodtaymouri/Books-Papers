@@ -18,7 +18,7 @@
 # Chapter 11 Pragmatism
 
 * The job of an architect is to hold vision in one hand and the reality in the other hand, and to bring them together.
-* __Pragmatic architecture__ is the notiation of driving toward the architectural vision whicke constraining projects to reality (tacticals). It can be achieved through
+* __Pragmatic architecture__ is the notiation of driving toward the architectural vision whicke constraining projects to reality (tacticals). Note that, Pragmatic Enterprise Architecture Framework (PEAF) is frame work for implementing enterprise strategies. From a very high-level, It can be achieved through
    * __Risk management__,
    * __Scope management and__,
    * __Communication__
@@ -63,4 +63,7 @@
  * The thid key area of pragmatic architecture is comminication. The architect must have a __clear, consistent, and continuous__ communication. Note that, any communication gap will be filled by others so __stay on top of the comminication process ecven if you are extraordineray busy__.
  * Note that, when a software is built only a limited variability and flexibility can be realized. Take time to document decisions along the way. Ensure that the decision log is properly distributed so that there is no surprise.
  * Whenever you present alternatives as part of making decision, your ability to clearly articulate the avilable options and which one you recommend will produce a great starting point for a conversation. Don't be afraid of the solution you recommend and show you have a detaild analysis about that decision. __If the don't accepted your recommended solution, owns the one they recommend but make sure the decision makers understand the consequence of that decision (delay, cost, tech debt, etc.)__
+
+# Chapter 12 Vision
+Vision drives how you think,what you do
 
