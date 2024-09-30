@@ -19,4 +19,12 @@
     * __Increased risks__
     * __Inability to consistenlty implement strategic directions across the organization__: the more complex an enterpsie architecture is, the more difficult to restructre or redesign it and the more problematic it is to implement strategic changes in the organization. In worst case, the organziation might stay in the current state.
     *  Distraction from core business problem: Complex enterprise architectures tend to tie down highly skilled professionals. __Instead of maintaing the competitveness, they are distracted by having to manage the complexity and preserving the current state__.
-*  
+*  Those organisations who suffer from the architectural complexity due to lack of transparancy in their organisational changes, can not answer the following questions:
+   * How can we sucsessfully integrate new firsm after an acquistion
+   * Can we introduce new products and services using the exisintg busines process and the underlying applications
+   * Which business unist and users will be affected by an application's migratrion
+   * What applications an infrastructure technologies to we require to run new or redesign the business process?
+* Transparency is the prerequisit to reduce the orgaizational complexity to gain flexibility
+* EAM seeks to maintain the flexibility, cost-efficiency and transparancy in the enterprise architecture. IT emphsizes on the interplay between the business(business models, organizational strructure, and business process models) and technology (information systeams, data, and technological infrastructure). __EAM helps to systematically develop the organziation to acheicve its strategic objectives and vision__.
+* How EAM help to improve an enteprise performance:
+  *  
