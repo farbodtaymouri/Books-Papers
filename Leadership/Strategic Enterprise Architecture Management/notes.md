@@ -42,7 +42,16 @@
    * Enterprise Architecture (EA) includes all relevant infromation for describing an enterprise, including its business and operating model, organizational structure, business process, etc. EA design rules provides stipulation for the development and structring of the components, as well as a means to ensure consistency among the components.
      
 ### Enterprise architecture models and layers
-* To dewcribe an organization's fundamental structure, EA models often contains a large components. The EA is most inclusive of all main components if it is presented from different perspectives at different layers of abstractions. there is no standrad on the layers and the components to be included but usually the following layers are considered:
-   * __Strategy Layer__:  It dewcribes the postioning of an enteprise at the higher level of abstraction and it is developed after the business strategy is defined. The typical artifacts of this layer are: Value network
+![](https://github.com/farbodtaymouri/Books-Papers/blob/main/Leadership/Strategic%20Enterprise%20Architecture%20Management/image/EA_layers.png)
+* To describe an organization's fundamental structure, EA models often contain large components. The EA is most inclusive of all main components if it is presented from different perspectives at different layers of abstraction. There is no standard on the layers and the components to be included, but usually, the following layers are considered:
+   * __Strategy Layer__: It describes the positioning of an enterprise at the higher level of abstraction and it is developed after the business strategy is defined. The typical artifacts of this layer are: __Value network__, __customer and market segmentation, products and service portfolio, business goals__.
+   * __Organizational and Process Layer__: It indicates the organization structure and its processes. It comprises the static aspects, i.e., departments, business units, and roles, as well as dynamic aspects, for example, business processes and tasks.
+   * __Information System Layer__: It describes how information is processed and shared electronically within the organization. This layer can be broken down into the following layers:
+      * __Application Layer__: It includes the main software components that implement the business logic. __Typical artifacts are application components and services__.
+      * __Data Layer__: It describes how the key business information is presented and implemented in databases. __Typical artifacts are data models and databases__.
+      * __Integration Layer__: It indicates how applications share or could share data and functions with other applications and databases. __Typical artifacts are interfaces, protocols, and integration components__.
+      * __Infrastructure Layer__: It includes computing services that form the enterprise technical infrastructure. __The typical artifacts are system software and infrastructure configurations__.
+      * __People and Competencies__: It represents the people and their competencies required to develop and operate an enterprise architecture consisting of the aforementioned layers.
+
 
 ```
