@@ -52,6 +52,7 @@
       * __Integration Layer__: It indicates how applications share or could share data and functions with other applications and databases. __Typical artifacts are interfaces, protocols, and integration components__.
       * __Infrastructure Layer__: It includes computing services that form the enterprise technical infrastructure. __The typical artifacts are system software and infrastructure configurations__.
       * __People and Competencies__: It represents the people and their competencies required to develop and operate an enterprise architecture consisting of the aforementioned layers.
-
+    
+* Structuring EA as mentioned in layers helps to separate concerns, but aligning layers can be challenging. For example, in the strategy layer, the company might introduce a new product or service, and it happens maybe twice a year. At the same time, redesigning the organization to implement such strategic changes might take up to two years. For example, IS are designed to last for 10 years. Thus, the organizations investigate measures for aligning business and IT.
 
 ```
