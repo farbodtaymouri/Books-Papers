@@ -49,3 +49,32 @@
     * Strategic planning might bring dedicated architecture initiatives for EA's structured development. Second, all other strategic initiatives must be documented in EA and analysed in terms of impacts on EA.
 * Why is it important?
   * EAM not only helps in mastering the real-world complexity by analysing the existing capabilities, but also in defining smart and feasible strategies and migration paths. Secondly, if the strategic initiatives that guide the organisation's future development do not align with the strategic vision and principles, they put the organisation at risk of not meeting long-term strategic EA objectives. __If this happens, then the development of the architecture remains arbitrary and chaotic.__
+  * If you look at the above plot, during portfolio and migration planning step, all small projects are converted into operational changes and later such operational changes are assessed which might be implemented aftwerads and monitored by EA.
+* How is it realted to other building blocks?
+ * As demonstrated in the above figure, strategic planning comes before project life cycle. EA operation and monitoring helps to introduce strategic objectives not implemented in the form of projects as operationla changes.
+
+## Embedding EAM into the Project Life Cycle
+* What is this?
+  * Strategic objectives are mostly realized in the form of projects. Organizations choose to implement architectural changes in project form because projects are temporary with clear targets and dedicated resources. Therefore, they allow for the effective development of architectural components such as information systems, infrastructure, and business processes.
+  * From EAM, as demonstrated above, a project has 4 stages:
+    * Project set-up
+    * Solution Design
+    * Implementation of the solution
+    * Piloting and roll-out 
+* Why is it important?
+  * In most cases, the projects do not go as planned. __Environmental changes, lack of understanding completely by the dev team, and requirements volatility__ are three main reasons. If the project's scope changes, its impact on EA changes as well. If there is no __constant__ monitoring of the projects and EA-related decision-making during project execution, the project outcome might not align with the intended architecture. Thus, __projects almost always influence EA in an unintended way__.
+* How is it related to other parts?
+  * Strategic planning initiates the above projects and EA subprocesses monitor project executions by providing relevant data about the EA components of interest via KPIs.
+
+## Embedding EAM into Operations and Monitoring
+* What is this?
+  * Projects are a vehicle for large EA changes. But most changes are small. Organizations usually have dozens of projects in their portfolio and thousands of potential change requests in their change request management system. Such changes are addressed during routine EA operations.
+  * There is always a risk with small changes as they might affect the functionality of applications, topology of network infrastructure, and control-flow of business process models.
+  * Although the mentioned changes might be useful, they might be implemented in a way that conflicts with EA guidelines or causes unforeseen side effects. Furthermore, __they might not be documented properly, thus future decisions might not be based on complete information__.
+  * Efficient handling of smaller changes in EA requires a pragmatic procedure:
+    * Collect demands and changes
+    * Assess changes
+    * Implement changes
+    * Monitor EA
+  * The structured development of EA consists of hundreds or even thousands of components, including infrastructure components, applications, business processes, which cannot be done with EA models only. __Organizations use KPIs to measure certain EA characteristics such as cost efficiency, service quality, alignment, and risks__.
+
