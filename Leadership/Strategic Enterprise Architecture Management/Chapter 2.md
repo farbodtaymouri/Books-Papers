@@ -77,4 +77,23 @@
     * Implement changes
     * Monitor EA
   * The structured development of EA consists of hundreds or even thousands of components, including infrastructure components, applications, business processes, which cannot be done with EA models only. __Organizations use KPIs to measure certain EA characteristics such as cost efficiency, service quality, alignment, and risks__.
+* Why is it important?
+  * Without proper operation and process monitoring, the organization will lose control over EA. Uncontrolled modifications of EA components have the potential to derail EA plans. EA operations and processes ensure that small changes which impact EA are systematically tracked and that EA information is up to date.
+
+## EA Frameworks, Modeling, and Tools
+* What is this?
+  * EA frameworks such as Zachman are useful for defining and developing the detailed architecture and governing the principles during its development and the standards guiding it.
+  * EA frameworks provide guidelines, procedural models, and methodologies for structured EA development.
+* Why is it important?
+  * The underlying idea of developing such frameworks and models is to accelerate EAM development, reduce the risk of EAM failure, and make EAM more efficient and effective.
+* How is it related to other building blocks?
+  * Frameworks play an important role in all EA-related processes. They help the architect as a toolbox to serve EA tasks. Thus, there is a relationship between frameworks and all other mentioned steps (strategic planning, project life cycle, and operations and monitoring).
+
+## People, Adoption, and Introduction of EAM
+* What is this?
+  * EAM is not only impacted by hard methodologies such as frameworks and modeling but also by soft factors. For example, individual resistance, incentives, and support from stakeholders play an important role in EAM development.
+* Why is it important?
+  * EAM requires many stakeholders to change their behavior. EAM increases transparency about EA-related decision-making and work practices. This can lead to fear that past management mistakes might come to light and that managers will be criticized for inefficient behavior and work patterns. Additionally, people tend to resist changing their habits.
+
+ 
 
