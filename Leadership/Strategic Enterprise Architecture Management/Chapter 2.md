@@ -95,5 +95,13 @@
 * Why is it important?
   * EAM requires many stakeholders to change their behavior. EAM increases transparency about EA-related decision-making and work practices. This can lead to fear that past management mistakes might come to light and that managers will be criticized for inefficient behavior and work patterns. Additionally, people tend to resist changing their habits.
 
- 
+## Do I need all of this?
+* __Note that EAM is too complex to implement in a single step.__
+* __If you can't implement everything right at once, it is recommended to make a decision about the order of activities based on detailed analysis of your organization in terms of maturity, capability, the nature of management support, and your vision.__
+* You should develop an EAM roadmap that fits your overall EAM objectives by answering the following questions:
+  * Who are the relevant stakeholders and sponsors?
+  * When will I address the different EAM aspects?
+  * In what order will I address them?
+  * Have I thought about the quick wins?
+
 
