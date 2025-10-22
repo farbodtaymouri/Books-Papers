@@ -18,8 +18,8 @@
     * __Peace of AI Innovation__: Adding a new technology to the current stsck needs to impove user-expericne and don't just add complexity to the system
     * __Ehtical Requirments__
 * How to use Well-Architected Framework for AI Workloads
-    * Start with the Design methodology
-    * Proceede with the Design Principles to see how the design methodology alings with the core Well-Architected Framework pillars
+    * Start with the __Design methodology__
+    * Proceede with the __Design Principles__ to see how the design methodology alings with the core Well-Architected Framework pillars
     * Focus on the desing areas (MLOPS, GENAI) that has the biggest effect on your solution
     * Use Assessemtn Review Tool https://learn.microsoft.com/en-us/azure/well-architected/ai/assessment to evlaluate the readiness of your AI workload.
 # Design Methodology for AI Workloads
