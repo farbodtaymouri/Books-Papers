@@ -63,4 +63,38 @@ Since AI workloads and models might use sensitive production data to produce rel
 | **Reduce the attack surface by enforcing strict user access and API design.** | Require authentication for all inferencing endpoints, including system-to-system calls. Avoid anonymous endpoints and use least-privilege design. |
 
 
+## Cost Optimisation
+
+The goal of cost optimisation is to maximise the investment, not necessarily to reduce the cost. Note that, every architectural choice creates both direct and indirect financial implications. Understand the cost associated with "buy-vs-build", technology choice, billing models, liscening ,training, and operational expenses.
+
+| **Design principle** | **Key considerations (summarized)** |
+|-----------------------|--------------------------------------|
+| **Determine cost drivers through cost modeling** | Identify major cost factors early: **data volume**, **query frequency**, **throughput**, and **dependency costs**. Estimate data indexing, processing, and query patterns to understand compute and storage demand. Larger datasets and high query complexity increase costs. Assess throughput tiers and dependency pricing (e.g., external APIs, model hosting). |
+| **Pay for what you intend to use** | Choose technology and tiers that fit real usage — avoid over-provisioning. Prefer **elastic compute** for variable workloads and **spot pricing** for non-critical or interruptible training. Don’t pay for idle or oversized SKUs. Test and benchmark to find the best balance of **performance vs. cost**. |
+| **Use what you pay for. Minimize waste.** | Monitor utilization continuously. Shut down, scale down, or deallocate unused resources. Optimize for **write-once, read-many** patterns to reduce storage costs. Simulate endpoints instead of using paid inference for testing. Assign **cost accountability** to teams and automate utilization alerts. |
+| **Optimize operational costs** | Automate frequent retraining tasks to reduce manual effort and ensure consistency. Use slightly older or sampled data when acceptable to lower compute costs. For **offline training**, use cheaper compute (e.g., low-priority VMs or spot clusters). Periodically delete obsolete data or features to minimize long-term storage costs. |
+
+
+* Note that there is a trade-off between Cost-Optimisation and Performance Efficiency in many asspects like the number in index in a databse. The more index the better and quicker retrival but it comes at more cost.
+* Trade-off between Cost-Optimization and Operational Excellence where training an ML model in the pre-prod envrionment with prod data reduces the cost (no need for re-training in prod envrionment) but impact Opercational Excellence since more protectetion needs to be applied at the lower environment.
+
+## Operationa Excellence
+
+__The overal objective of Operational Excellence is to deliver the capabilites efficently throughout the development lifecycle__. To achieve this goal, __repeatable process__ that suppport the design methodology of experimentation to improve model performance must be established. Operational Excellnece for AI workloads is also about maintaning the accuracy of the model over time, implemntating effective monitoring in place, implementaing governance in place, and developing change management process to adopt model drift.
+
+| **Design principle** | **Key considerations (summarized)** |
+|-----------------------|--------------------------------------|
+| **Foster a continuous learning and experimentation mindset** | Build operations around modern methodologies such as **DevOps**, **DataOps**, **MLOps**, and **GenAIOps**. Encourage early collaboration between development, data, and operations teams to align on acceptable model performance and create feedback loops for rapid improvement. |
+| **Choose technologies that minimize operational burden** | Prefer **Platform as a Service (PaaS)** solutions over self-hosted options to simplify deployment, automate workflows, and reduce day-to-day operational complexity. |
+| **Create automated monitoring and alerting systems** | Establish clear quality metrics early in the lifecycle. Use experiment-tracking tools to capture parameters, environments, and results. Implement dashboards and actionable alerts so operators can detect and resolve issues quickly. Ensure logging and auditability are built in. |
+| **Automate the detection and mitigation of model decay** | Continuously evaluate **model drift** with automated tests. Configure monitoring systems to trigger alerts when predictions deviate from expected results. Use tools that can automatically retrain or update models and adapt data pipelines or logic as use cases evolve. |
+| **Implement safe deployments** | Use **blue-green** or **side-by-side** deployments to avoid downtime. Rigorously test before release to confirm configuration, compliance, and performance. Maintain a rollback plan for emergency situations. |
+| **Continuously evaluate the user experience in production** | Gather user feedback and interaction data (with proper consent) to assess usability, accuracy, and performance. Use this data to improve the workload iteratively while maintaining compliance and privacy standards. |
+
+## Performance Efficiency
+
+Performance Efficinecy in general is the ability of the workload to adapt to changing demands by scalling up to meet the increased load without impacting the user experience and scalling down accordingly. In AI workloads more specific metrics are required to be reviwed for this pillar. Model Performance of an AI workload is influcned by operations like experiment tracking and data processing. Other metrics that AI workloads might be monitored for are the accuracy, preceision, fairness where the AI workload need to adapt changes in any of the metnioned metrics without impacting user experience. In addition, the performance of the platform and application components that support the model is crucial.
+
+
+
 
