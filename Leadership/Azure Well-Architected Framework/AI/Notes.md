@@ -1,4 +1,11 @@
 
+## Table of Contents
+- [AI Workload on Azure](#ai-workload-on-azure)
+- [Design Methodology for AI Workloads](#design-methodology-for-ai-workloads)
+- [Design Principles for AI Workloads on Azure](#design-principles-for-ai-workloads-on-azure)
+
+
+
 # AI Workload on Azure
 * In the context of Well-Architected Framework, the term workload refferes to the collection of application, resources, custom codes, AI models and supporting infrastructure that functions togather to define a business outcome.
 * The Azure Well-Architected framework focuses on ethical functionality, adapting to fast evolving AI technologies and staying relevant and explainable. Note that, applying __Well-Architected Framework Pillars (Reliability, Security, Opereational Excellecen, Performance Efficiency, and Cost Optimisation)__ ant any decision point ensure the system is reliable, secured, efficient and cost effective.
@@ -23,7 +30,10 @@
     * Proceede with the __Design Principles__ to see how the design methodology alings with the core Well-Architected Framework pillars
     * Focus on the __Desing Areas__ (MLOPS, GENAI) that has the biggest effect on your solution
     * Use Assessemtn Review Tool https://learn.microsoft.com/en-us/azure/well-architected/ai/assessment to evlaluate the readiness of your AI workload.
+ 
+      
 # Design Methodology for AI Workloads
+
 If you desing a capability or intoduce and improvement, evaluate the change from the methodology perpective. Does your change affect the user experience? Is your change felxible enough to adapt to the future innovations? Does it disrupt the experimentation flow?
 
 * __Design with an Experimental Mindset__: Design your AI workload or system as if experimentation is oart of their DNA. AI workloads rarely work perfectly in the first run, and hence they got better by adding feedback, trials etc. This desing methodology includes two loops: __ineer loop__ where the focus is on model training and evalaution in dev/test and __outer Loop__ or continues montoring and re-training in production.
