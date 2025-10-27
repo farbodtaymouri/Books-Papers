@@ -3,6 +3,7 @@
 - [AI Workload on Azure](#ai-workload-on-azure)
 - [Design Methodology for AI Workloads](#design-methodology-for-ai-workloads)
 - [Design Principles for AI Workloads on Azure](#design-principles-for-ai-workloads-on-azure)
+- [Design Areas](#design-areas)
 
 
 
@@ -119,6 +120,13 @@ In AI workloads more specific metrics are required to be reviwed for this pillar
 
 
 
+# Design Areas
+This section covers the areas that can benefit from applying Azure Well-Architected Framework. Note that, it is not necessary to went through all of them but it is good to review them based on your needs.
 
+## Application Design for AI Workloads on Azure
+
+This section provides common design areas and factors to cosioder when you make decisions about the technology and approach when you create an application that has AI functions. When designing intelligent features, your functional and nonfunctional requirements determine whether you need simple inference or advanced problem-solving capabilities. These requirements should guide your high-level and detailed design decisions throughout the process.
+
+* The first step in designing your AI worload is to make a decision on buy-vs-build and to achieve this, it is good to consider __model catalouge, Liscencing, Key components like model architecture, training data, performance metrics etc__
 
 
