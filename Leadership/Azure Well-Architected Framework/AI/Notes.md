@@ -129,4 +129,10 @@ This section provides common design areas and factors to cosioder when you make 
 
 * The first step in designing your AI worload is to make a decision on buy-vs-build and to achieve this, it is good to consider __model catalouge, Liscencing, Key components like model architecture, training data, performance metrics etc__
 
+## Application Layer Architecture
+
+When designing intelligent capabilites, establishing clear boundaries in your architecture with the following key layers.
+
+![](https://github.com/farbodtaymouri/Books-Papers/blob/main/Foundation%20Models%20for%20NLP/image/electra_loss.png)
+
 
