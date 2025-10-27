@@ -1,3 +1,4 @@
+
 # AI Workload on Azure
 * In the context of Well-Architected Framework, the term workload refferes to the collection of application, resources, custom codes, AI models and supporting infrastructure that functions togather to define a business outcome.
 * The Azure Well-Architected framework focuses on ethical functionality, adapting to fast evolving AI technologies and staying relevant and explainable. Note that, applying __Well-Architected Framework Pillars (Reliability, Security, Opereational Excellecen, Performance Efficiency, and Cost Optimisation)__ ant any decision point ensure the system is reliable, secured, efficient and cost effective.
@@ -20,7 +21,7 @@
 * How to use Well-Architected Framework for AI Workloads
     * Start with the __Design methodology__
     * Proceede with the __Design Principles__ to see how the design methodology alings with the core Well-Architected Framework pillars
-    * Focus on the desing areas (MLOPS, GENAI) that has the biggest effect on your solution
+    * Focus on the __Desing Areas__ (MLOPS, GENAI) that has the biggest effect on your solution
     * Use Assessemtn Review Tool https://learn.microsoft.com/en-us/azure/well-architected/ai/assessment to evlaluate the readiness of your AI workload.
 # Design Methodology for AI Workloads
 If you desing a capability or intoduce and improvement, evaluate the change from the methodology perpective. Does your change affect the user experience? Is your change felxible enough to adapt to the future innovations? Does it disrupt the experimentation flow?
@@ -40,6 +41,8 @@ If you desing a capability or intoduce and improvement, evaluate the change from
 It is essential to consider all Azure Well-Architected Frameworks pillars collectively, including their trade-off and apply each pillar to the functional and non-functional requirments of the workload.
 
 ## Reliability
+Outages and malfunctions are serious to any workloads. A reliable workload must survive and continue to consistently provides its inteded functionality. It must be __resilient__ so that it can detect and recover from the failure whithin and accepted timeframe. It must also be __available__ so that users can access the workload during the promised time at the promised quality level. Note that, Workload architecture should consider reliability assurance in __application coide, infrastructure, and operations__.
+
 When running any AI workloads on Azure the general reliability considerations in Azure Well-Architected framework must be applied. However, for AI workloads the reliability of the __model training, hosting, and inferencing__ is important.
 
 | **Design principle** | **Considerations** |
@@ -93,7 +96,18 @@ __The overal objective of Operational Excellence is to deliver the capabilites e
 
 ## Performance Efficiency
 
-Performance Efficinecy in general is the ability of the workload to adapt to changing demands by scalling up to meet the increased load without impacting the user experience and scalling down accordingly. In AI workloads more specific metrics are required to be reviwed for this pillar. Model Performance of an AI workload is influcned by operations like experiment tracking and data processing. Other metrics that AI workloads might be monitored for are the accuracy, preceision, fairness where the AI workload need to adapt changes in any of the metnioned metrics without impacting user experience. In addition, the performance of the platform and application components that support the model is crucial.
+Performance Efficinecy in general is the ability of the workload to adapt to changing demands by scalling up to meet the increased load without impacting the user experience and scalling down accordingly.
+
+In AI workloads more specific metrics are required to be reviwed for this pillar. Model Performance of an AI workload is influcned by operations like experiment tracking and data processing. Other metrics that AI workloads might be monitored for are the accuracy, preceision, fairness where the AI workload need to adapt changes in any of the metnioned metrics without impacting user experience. In addition, the performance of the platform and application components that support the model is crucial.
+
+| **Design principle** | **Key considerations (summarized)** |
+|-----------------------|--------------------------------------|
+| **Establish performance benchmarks** | Conduct regular performance testing across all architectural layers and define acceptable targets. Treat benchmarking as an **ongoing process**, not a one-time task. Start with baseline prediction performance, measure continuously, and refine models to meet evolving expectations. |
+| **Evaluate resource needs to meet performance targets** | Understand workload characteristics to select the right **compute platform** and **SKU size**. Use **load testing** for capacity planning and to decide when to use GPU-optimized compute (for model training/fine-tuning) versus general-purpose SKUs (for orchestration). Choose data platforms that handle concurrent reads/writes efficiently. Different inference servers have unique latency and throughput profiles—select ones aligned with your performance baselines. |
+| **Collect and analyze performance metrics; identify bottlenecks** | Continuously analyze **telemetry and logs** to ensure throughput and latency goals are met. Track metrics such as query latency, throughput, and accuracy under load. Use orchestration and service call telemetry to pinpoint delays (e.g., CPU vs. network time). Monitor **UI engagement metrics** to assess user experience—multimodal workloads (voice, video) may require special tuning for response times. |
+| **Continuously improve benchmark performance** | Automate collection and analysis of performance metrics and alerts. Feed production quality data back into retraining pipelines to maintain model accuracy and responsiveness over time. |
+
+
 
 
 
