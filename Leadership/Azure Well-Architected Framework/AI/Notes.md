@@ -155,4 +155,11 @@ When designing intelligent capabilites, establishing clear boundaries in your ar
 | **Isolate behaviors and actions** | Design clear boundaries across client, intelligence (routing/orchestration/agents), knowledge (grounding data), and tools (business APIs) layers. Each layer should enforce its own policies, identities, and caching strategies to reduce blast radius and focus development efforts. |
 | **Prioritize prebuilt solutions** | Use software as a service (SaaS) or platform as a service (PaaS) to handle workload functions when they meet security, safety, compliance, and quota needs. Implement compensating controls through gateways that enforce authentication, quotas, safety, and logging. Use prebuilt and pretrained models where possible to minimize the operational and development burden for your workload and operations teams. |
 
+### Distincition Between Inferencing and Intelligence Applications
+
+* __Inferecneing Application__: Such pplications will do a single step operations like classification or regression. The typical architecture is like the client communicate via AI gateway that provides authentication, quatas, safety, and routing. That calles into the model serving (model inferenecing) layer in Azure AI Foundry, AKS, or online managed endpoints. While practical th results might be chashed for further useage. __Such applications require minimal orchestration, and the focus is on performance and throughput__.
+
+* __Intelligent Application__: Such application perform planning, coordination, multi-step reasoning and are handled via agents and agent orchestration. The typical architecture likes the client (client layer) invokes an agent or agent orchestrator (intelligence layer) where the agent will invoke external tools via MCP (tool layer) or call other agents or APIs. The agent might call into grounding knowlegde (knowledge layer). __This kind of applications usually need agentic patterns and model routing and comples workflow coordination integrate with multiple data sources and tools and requires conversation and context management.__
+
+
 
