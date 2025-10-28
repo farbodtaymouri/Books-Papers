@@ -135,4 +135,24 @@ When designing intelligent capabilites, establishing clear boundaries in your ar
 
 ![](https://github.com/farbodtaymouri/Books-Papers/blob/main/Foundation%20Models%20for%20NLP/image/electra_loss.png)
 
+* __Client Layer__ : This layer lets the user or other clients experience your intelligent workload's ca;pabilites. This layer must be kept thin and delegate most capabilites to other layers.
+* __Intelligence Layer__: Routing, Orchestration, agent capabilites (agent's card) that coordinate AI Operations. This layer contains, model routing, conversation management and intelligent decision-makings
+* __Inferenceing Layer__: This layer handles model loading and runtime invocation, input preprocesing and output preprocessing, along with model serving predictions via API or embedded systems.
+* __Knowledge Layer__: Grounding data, knoweledge graphs, and rertival services that provide relevant context and information into the intelligent layer. This layer enforcess data access policies and authorisation.
+* __Tools Layer__: Business APIs, and external capabilites that inteliggence layer can invoke. This layer should use standardised interface and enforce it's own security policies.
+
+*Note that each layer mentioned enforces itw own polices, identites, and caching strategies* to achieve their own __localised, reliability, security and performance requirments.__
+
+### Recommendation 
+
+
+| **Recommendation** | **Description** |
+|----------------------|-----------------|
+| **Prioritize security and Responsible AI controls** | Implement traditional application security plus AI-specific safety measures as a primary design driver. Enforce provider safety systems, input/output filtering, identity-bound rate limiting and quotas, and token/prompt caps. Security and safety controls must be verified and can't be assumed from managed services. |
+| **Keep intelligence away from the client** | Design back-end services to handle cross-cutting concerns like rate limiting, failover operations, and AI processing logic. Abstract behavior and intelligence away from the client to future-proof your design and improve maintainability. |
+| **Block direct access to data stores** | Code in AI systems shouldn’t directly access your data stores. Route all data requests through an API or similar data access abstraction that enforces authorization and propagates user or tenant context into retrieval and filtering. Pass forward user identity so that data level security can be applied. |
+| **Abstract your models and tools** | Use abstraction layers to decouple your application from specific models, tools, and technologies. Implement standardized interfaces and protocols to provide flexibility as technologies evolve, which makes your design more maintainable and future-proof. |
+| **Isolate behaviors and actions** | Design clear boundaries across client, intelligence (routing/orchestration/agents), knowledge (grounding data), and tools (business APIs) layers. Each layer should enforce its own policies, identities, and caching strategies to reduce blast radius and focus development efforts. |
+| **Prioritize prebuilt solutions** | Use software as a service (SaaS) or platform as a service (PaaS) to handle workload functions when they meet security, safety, compliance, and quota needs. Implement compensating controls through gateways that enforce authentication, quotas, safety, and logging. Use prebuilt and pretrained models where possible to minimize the operational and development burden for your workload and operations teams. |
+
 
