@@ -1,4 +1,4 @@
-This section covers the areas that can benefit from applying Azure Well-Architected Framework. Note that, it is not necessary to went through all of them but it is good to review them based on your needs.
+This section covers the areas that can benefit from applying Azure Well-Architected Framework. Note that, it is not necessary to went through all of them but it is good to review them based on your needs https://learn.microsoft.com/en-us/azure/well-architected/ai/application-design.
 
 # Application Design for AI Workloads on Azure
 
@@ -77,8 +77,38 @@ When designing intelligent capabilites, establishing clear boundaries in your ar
   * __Cache Key Component__: Cache values need to be tied to specific runtime fsctors within your workload. Include values such as tenant, or user identity, policy context and model version
   * __Time-to-live (TTL)__: Teh cached values must have expiration time to ensure data freshness and content sensitivity
   * __User Privacy Protection__: Necer cache PI data unless it is required at runtime or by the policy. Usually caching works if the cached values work across several users. Hence do not create cahcing mechanism for individual users.
- 
-  Note that caching improves the performance and might reduce the operational cost but at the same time it increases the security risk by data leakage and privacy violations.
+
+Note that caching improves the performance and might reduce the operational cost but at the same time it increases the security risk by data leakage and privacy violations.
+
+## Evaluate the use of Orchestration and Agents in Generative AI Solutions
+
+### Choose the apporpriate coordiation approach based on your application's requirments
+
+  * __When you use orchestration__
+     * __PRedictable workflows__: Multi-step well defined sequences and decisions points
+     * __Compliance Requirments__: When you you need specific steps for regulatory requirments (e.g., masking sensitive data before saving)
+     * __Simple coordination__
+     * __Performance Crictical Path__: Workflows where the latency and resource usage must be controlled
+  
+  * __when you use agent collaboration__
+     * __Multi-step Reasoning__ : Tasks require planning and decision-making across many steps
+     * __Tool Coordination__ : Complex workflows that require coordinating multiple specialised tools
+     * __ Adaptive Behavior__ : Scenarios where the system needs to change the nehavior based on some intermediate results
+     * __ Context Management__ : The tasks where the agent need to maintain the user-context and converation state across intercations.
+
+### Agent Design Summary
+
+  * __Design considerations__: Define clear boundaries between agent capabilities to improve reliability and testing. Use proven communication patterns (e.g., topic–queue) and standard interfaces for tool abstraction and flexibility. Avoid adding unnecessary agent layers—only use them when complexity justifies it.
+
+  * __State management__: Persist minimal agent state for multi-turn or long-running tasks using secure storage (e.g., Cosmos DB, Redis). Implement TTLs to manage privacy and cost, and ensure agents can resume seamlessly.
+
+  * __Hybrid approaches__: Combine orchestration and agent reasoning where appropriate:
+
+    * Use orchestration for structure and control.
+    * Use agents for complex or domain-specific tasks.
+    * Escalate to agents when deterministic logic isn’t enough.
+
+__Trade-off__: Orchestration offers control and predictability; agents add flexibility but increase complexity.
   
     
     
