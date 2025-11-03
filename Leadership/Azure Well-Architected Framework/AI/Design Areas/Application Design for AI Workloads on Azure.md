@@ -69,6 +69,16 @@ When designing intelligent capabilites, establishing clear boundaries in your ar
   * __Infrastructure Services__:
  
 * __Implement multi-layer caching strategies__: A multi-layer chacing strategy improves the performance of AI workload and reduce the cost. Consider the following levels:
-    *__Results and Answer Caching__   
+  * __Results and Answer Caching__: This can, for example, minimise the number of calls to the LLM
+  * __Retrival and Grounding Snipper Caching__: This can help minimize the number of calls to retrive the data from the search engine
+    
+  For developiing caching at the levels mentioned a couple of important things need to be noted. For example, what data is frequently get accessed and how the application users's role infunce what data they can access. Factors that need to be considered
+
+  * __Cache Key Component__: Cache values need to be tied to specific runtime fsctors within your workload. Include values such as tenant, or user identity, policy context and model version
+  * __Time-to-live (TTL)__: Teh cached values must have expiration time to ensure data freshness and content sensitivity
+  * __User Privacy Protection__: Necer cache PI data unless it is required at runtime or by the policy. Usually caching works if the cached values work across several users. Hence do not create cahcing mechanism for individual users.
+ 
+  Note that caching improves the performance and might reduce the operational cost but at the same time it increases the security risk by data leakage and privacy violations.
+  
     
     
