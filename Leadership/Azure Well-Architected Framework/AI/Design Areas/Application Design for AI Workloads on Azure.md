@@ -168,3 +168,63 @@ Implement AI security measure at all layers of applications while using standard
 * __Standard autentication and authorization__
 * __Data Lineage security wuth user context propagation: Ensure that the access control is maintained throughout the data pipeline. Pass user identity so that the ueser can only access the results he/she are authorised to see. For example, you might pass Microsoft Entra group claims into the knowledge tool call to ensure that grounding never retrieves unauthorized documents. This configuration guarantees cached results and ensures that AI responses respect user permissions.
 *  __audit trails__ : Implement detailed logging of AI interaction for compliance and security monitoring.
+
+
+# AI Application Architecture Review Checklist  
+*Based on Azure Well-Architected Framework – Application Design for AI Workloads*
+
+Use this checklist to review solutions as an architect or to guide solution review architects.  
+For each item mark: ✅ (Checked) / ⚠️ (Needs attention) / ❌ (Not addressed).
+
+---
+
+## 1. Business Context & Outcomes  
+- [ ] Have business outcomes for the AI application been clearly defined (e.g., accuracy improvement, cost reduction, user satisfaction)?  
+- [ ] Have user experience and interaction requirements been understood (including expected response times, latency, error handling)?  
+- [ ] Have regulatory, compliance, privacy and data-residency constraints been captured and included in design decisions?  
+
+## 2. Architecture Layers & Boundaries  
+- [ ] Has the architecture defined clear layers: Client, Intelligence (orchestration/agents), Inferencing, Knowledge (grounding), Tools (business APIs)?  
+- [ ] Are responsibilities correctly separated (e.g., the client is kept thin, heavy logic in backend)?  
+- [ ] Are APIs/tools decoupled (for example, business capabilities exposed behind standardized interfaces) to allow flexibility/change of models?  
+
+## 3. Model / Inferencing Considerations  
+- [ ] If using prebuilt models vs custom: was this decision evaluated appropriately (control, cost, expertise)?  
+- [ ] Are hosting and inference platforms selected based on performance, cost, scalability and maintainability?  
+- [ ] Does the solution design account for batch/stream/online processing as appropriate?  
+
+## 4. Data & Knowledge Design  
+- [ ] Has grounding data (contextual data for models) been considered and designed (ingestion, indexing, schema, freshness)?  
+- [ ] Are data-access abstraction layers used (i.e., code isn’t accessing data stores directly, but via APIs that enforce authorization & context)?  
+- [ ] Are data models and indexes designed for relevancy, performance and cost (e.g., selective fields, sorted/searchable schema)?  
+
+## 5. Abstraction, Flexibility & Future-proofing  
+- [ ] Is the solution designed with abstraction — e.g., model abstraction, tool abstraction, interface protocols — so that you can upgrade/swap components without major rewrite?  
+- [ ] Are prompts, configuration and business rules externalised (version-controlled) so non-developers (e.g., domain experts) can tune them?  
+
+## 6. Security & Responsible AI  
+- [ ] Are security controls (identity, access, encryption, network segregation) applied across all layers (client, inference, data, tools)?  
+- [ ] Has content safety, bias mitigation, explainability and ethical considerations been built in (especially for generative AI or non-deterministic behavior)?  
+- [ ] Are input/output filters, quotas, rate limiting, token management and prompt caps considered where relevant?  
+
+## 7. Observability, Monitoring & Operational Resilience  
+- [ ] Is monitoring and observability planned from day one: model performance (accuracy, drift), data quality, user interactions, latency, failure modes?  
+- [ ] Are failure-modes, fallback strategies and graceful degradation considered (especially for AI non-deterministic behavior)?  
+- [ ] Are operational processes (MLOps/GenAIOps) defined: experiment tracking, model versioning, automated retraining, decay detection?  
+
+## 8. Performance & Cost Optimization  
+- [ ] Are performance benchmarks defined and tested (latency, throughput, model accuracy) and the infrastructure right-sized accordingly?  
+- [ ] Are cost-drivers understood (data volumes, queries, training, inference) and leveraged to choose appropriate compute/storage tiers, scaling, spot instances where feasible?  
+- [ ] Is reuse of managed services (PaaS/SaaS) considered when appropriate, to reduce operational burden and cost?  
+
+## 9. Review & Documentation  
+- [ ] Has an architecture design specification been created (including diagrams, ADRs, decision records) capturing functional + non-functional requirements?  
+- [ ] Has the architecture review been scheduled / will be scheduled (including solution review by a review architect) using a structured checklist like this?  
+- [ ] Has trade-off analysis (between security vs cost, flexibility vs performance, managed vs custom) been documented and approved?
+
+---
+
+### ✅ Usage Notes  
+- Use this checklist **early in your design phase** to surface issues proactively.  
+- Use it again **during review** to verify each item and capture evidence or mitigation for any gaps.  
+- After review, document **action items** for any unchecked or warned items and link them to your tracking system 
