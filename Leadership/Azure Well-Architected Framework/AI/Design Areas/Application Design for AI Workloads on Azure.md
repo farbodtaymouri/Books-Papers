@@ -109,6 +109,38 @@ Note that caching improves the performance and might reduce the operational cost
     * Escalate to agents when deterministic logic isn’t enough.
 
 __Trade-off__: Orchestration offers control and predictability; agents add flexibility but increase complexity.
-  
+
+## Implement AI Gateway for Policy Enforcement
+
+Use AI Gateway in your design to provide __gateway offloading__, __gateway Offloading__, __gateway aggregation__ capabilites within your worload. Ai Gateway can be used to proxy requests to model providers, agent endpoints, tool, and knowledge stores.
+
+### Core AI Gateway Capabilites
+
+AI gateway can address cross-cutting concerns and swerve as a layer of abstraction, indirection from the target system. The following capabilites can be considered from AI Gateway.
+
+* __Protocol Normalisation__ : For shared AI capabilites across providers, normolise interfaces to a common protocol via gateway imroves maintanability
+* __Authentication and Authorisation__ : Enfroce identity-based access control and pass the user context to the downstream applications
+* __Rate Limit and Quoata__ : Implement per-user/per-application or per tenant rate limits to avoid abuse consumption and mange costs
+* __Request and Response Filtering__ : Apply input validation (i.e., type check), prompt filtering, and checking output safety via AI gateway
+* __Token and Prompts Cap__: Put maximum token cap per transaction or prompt to avoid resource exhausation
+* __Model Routing Policy__ : Rout the ewquests to the apprpriate model based on the user permission and request type (text, image etc)
+* __Header Injection and Transfomration__ : Add user data context, security token for the downstream applications
+* __Chargeback Management__: Allocate charges across depratments tha use shared AI services.
+
+### Use AI Applications Design Patterns
+
+There are a number of indusctry design patterns that one can use to simplify the design of AI workloads.
+
+*  __Ensembling__ : It combines the outbout from several models to improve accuracy and robustness by mitigating the limitation of single model
+*  __Microservice architecture__ : It seperates components into independetly deployable services to enhannce scalability and maintenance. It enables teams to work on different components simultanously.
+*  __Event Driven Architecture__ : This design pattern uses events to trigger actions, which enables decoupled components and realtime processing, to make system more responsive and adaptable to changeing data
+*  __Multi-model routing__ : Model rounter helps to improve the system's responses by routing the request to a healthy model when another model runs into unhealthy state. Or it can help the quality of responses by selectign the best model responses. Note that, it is important to know on when to use model router:
+   *  __When to use model rounter__: Use this pattern if your workload cal tolerate latency and variability in responses or you need to balance the cost and capabilites across different models
+   *  __when to avoid model router__: Don't use this pattern if you need very precise responses from the fine-tuned model or when determinsitc behavior, including consistent performance is critical.
+ 
+__Note that, small applications or POCs will not benfit from the mentioned design patterns. These pplications must be designed for simplicity. Likewise, if there is a limited time or budget, or headcount, use a simple approach where later can be refactored to adapt a complex design patter.__
+
+
+ 
     
     
