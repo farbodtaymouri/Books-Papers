@@ -140,7 +140,31 @@ There are a number of indusctry design patterns that one can use to simplify the
  
 __Note that, small applications or POCs will not benfit from the mentioned design patterns. These pplications must be designed for simplicity. Likewise, if there is a limited time or budget, or headcount, use a simple approach where later can be refactored to adapt a complex design patter.__
 
+### Choose the right Frameworks, Libraires, and Protocols
 
- 
+The choice of framework and libraries is closely intertwined with application design. They affect, __performance, scalability, and maintenance__. However, the application design requirments can limit your framework choice. For example, use of Semantic Kernel SDK often ecourages a microservice-based design. wwhen you select a library or protocol, perefer open documented interfaces. There are a lot of emerging libraries and tools, for example, agent-to-agent, consider the tech debt you might bring from such evolving libraires.  Layers of abstraction can help keep the design interoperable across different AI libraries and frameworks.
+
+Consider the following factors when you choose frameworks and libraries:
+
+*  __Application Requirments__: The requirments of the application like real-time processing, batchprocessing, low latency etc might limit the choice of framework. For example, if low latency is part of the requirments then the framework needs to support asynch calls.
+*  __Integration needs__: If the applications needs to be integrated with specific systems or needs to generate specific formats then it might limit your choice of framework
+*  __Team Expertise__: The design that relies on less familiar framework might add extra development time and complexity
+*  __Community and Support__: Active communities and comprehensive documents reduce the implemntation risks
+*  __Performance characteristics__: Evalaute framewoek peformance such as memory usage, startup time, and inference speed.
+  
+
+Also, adopt standardised too protocols to improve governance and flaxbility
+*  __Use MCP style servers__: Use MCP or another sutiable standard tools to wrap business capabilites as descoverable tools
+*  __Use Specifications that have broad SDK support__: Define Tools by using OpenAPI specifications for cnsistent inference documentation and validation
+*  __Advertise Capabilites__: Design tools to advertise their capabilites, which allows the orcehrtrator to discover and route the requests appropriately. For example, if you have an ERP system, wrap the read and write operations as discoverable tools where the agents can discover them, hence no need to change the agent logics for the ERP.
     
-    
+
+## Design a Security Strategy for AI Workload
+
+Implement AI security measure at all layers of applications while using standard identity providers like Microsoft Entra ID
+
+### Core Security Principals
+
+* __Standard autentication and authorization__
+* __Data Lineage security wuth user context propagation: Ensure that the access control is maintained throughout the data pipeline. Pass user identity so that the ueser can only access the results he/she are authorised to see.
+*  __audit trails__ : Implement detailed logging of AI interaction for compliance and security monitoring.
