@@ -166,5 +166,5 @@ Implement AI security measure at all layers of applications while using standard
 ### Core Security Principals
 
 * __Standard autentication and authorization__
-* __Data Lineage security wuth user context propagation: Ensure that the access control is maintained throughout the data pipeline. Pass user identity so that the ueser can only access the results he/she are authorised to see.
+* __Data Lineage security wuth user context propagation: Ensure that the access control is maintained throughout the data pipeline. Pass user identity so that the ueser can only access the results he/she are authorised to see. For example, you might pass Microsoft Entra group claims into the knowledge tool call to ensure that grounding never retrieves unauthorized documents. This configuration guarantees cached results and ensures that AI responses respect user permissions.
 *  __audit trails__ : Implement detailed logging of AI interaction for compliance and security monitoring.
