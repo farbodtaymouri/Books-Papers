@@ -10,7 +10,7 @@ This section provides common design areas and factors to cosioder when you make 
 
 When designing intelligent capabilites, establishing clear boundaries in your architecture with the following key layers.
 
-![](https://github.com/farbodtaymouri/Books-Papers/blob/main/Foundation%20Models%20for%20NLP/image/electra_loss.png)
+![Application Architecture Layers](../image2/ApplicationArch.png)
 
 * __Client Layer__ : This layer lets the user or other clients experience your intelligent workload's ca;pabilites. This layer must be kept thin and delegate most capabilites to other layers.
 * __Intelligence Layer__: Routing, Orchestration, agent capabilites (agent's card) that coordinate AI Operations. This layer contains, model routing, conversation management and intelligent decision-makings
