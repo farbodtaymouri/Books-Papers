@@ -25,7 +25,7 @@ EDA is a common function that all data scientist do before any ML modeling or st
 
 ## Functional Requirments
 
-Consider the following questions:
+Considerations the following questions:
 
 *  __Does platfrom support Transient usage__: Most of the EDA activties are time-boxed and interactive, hence the resources used might be able to be turned-off if not used. This capability helps to control the cost of EDA.
 *  __Does the platfrom supports compute optionality__: The platfrom should be able to enable on-demand GPUs as needed and various compute options to help right-size the platfrom
@@ -45,4 +45,24 @@ The NFR for the platfrom capability to support the EDA activities are as follows
      *  __Encryption of data at rest and transient__
      *  __Regional and Data protection requirments__
      *  __Robust monitoring and alresting functinality including logging__
-     *  __Private networking access to the centralise repositories for container images, data, and code assests.
+     *  __Private networking access to the centralise repositories for container images, data, and code assests__.
+ 
+ 
+ # Considerations for model traning and fine-tuning
+
+ When moving to the model training and fine-tuning for sure Data scientist needs high-performance compute nodes for compute intensive tasks. For such tasks, the performance efficiency is more important reliability since these tasks happen behind the scence. However, if you need high reliability when model freshness is required, then you need ro consider who to spread the workload across the regions.
+
+ ## Functional Requirments
+
+ when evalauting platfrom capability for model training and fine-tuning the following questions must be considered
+
+  *  __Does the platfrom support transient usage__? Like EDA tasks, model training and fine-tuning are temporary. Unlike EDA tasks that are interactive, model training requires batch jobs. Hence the compute nodes must be turned off when the batch job finishes.
+  *  __Does the platfrom support orchestration__? Since the model training and fine-tuning might require several steps, hence the platfrom need to have an orchestrator
+  *  __Can existing technology on the platfrom be part of the solution__?
+
+# Considerations for model hosting and inferencing platform
+
+Model hosting and inferencing functions make the serve layer of an AI workload.These functions are performed with the endpoints that are specific to the software that you use. Model-serviing software solutions are Python SDKs that front an model via API and add functionality that is specific to the solution. Fundamentally the APIs for the serve layer are microservices, thus you must follow the same practice for these APIs that you follow for other microservices in your environment. They should be containairsed, bulkheadec from other services and have their own lifecycle that are indepndent of other APIs and microservices.
+
+## Functional Capabilities
+
