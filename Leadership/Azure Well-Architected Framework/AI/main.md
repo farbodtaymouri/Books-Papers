@@ -123,43 +123,5 @@ In AI workloads more specific metrics are required to be reviwed for this pillar
 # Design Areas
 This section covers the areas that can benefit from applying Azure Well-Architected Framework. Note that, it is not necessary to went through all of them but it is good to review them based on your needs.
 
-## Application Design for AI Workloads on Azure
-
-This section provides common design areas and factors to cosioder when you make decisions about the technology and approach when you create an application that has AI functions. When designing intelligent features, your functional and nonfunctional requirements determine whether you need simple inference or advanced problem-solving capabilities. These requirements should guide your high-level and detailed design decisions throughout the process.
-
-* The first step in designing your AI worload is to make a decision on buy-vs-build and to achieve this, it is good to consider __model catalouge, Liscencing, Key components like model architecture, training data, performance metrics etc__
-
-## Application Layer Architecture
-
-When designing intelligent capabilites, establishing clear boundaries in your architecture with the following key layers.
-
-![](https://github.com/farbodtaymouri/Books-Papers/blob/main/Foundation%20Models%20for%20NLP/image/electra_loss.png)
-
-* __Client Layer__ : This layer lets the user or other clients experience your intelligent workload's ca;pabilites. This layer must be kept thin and delegate most capabilites to other layers.
-* __Intelligence Layer__: Routing, Orchestration, agent capabilites (agent's card) that coordinate AI Operations. This layer contains, model routing, conversation management and intelligent decision-makings
-* __Inferenceing Layer__: This layer handles model loading and runtime invocation, input preprocesing and output preprocessing, along with model serving predictions via API or embedded systems.
-* __Knowledge Layer__: Grounding data, knoweledge graphs, and rertival services that provide relevant context and information into the intelligent layer. This layer enforcess data access policies and authorisation.
-* __Tools Layer__: Business APIs, and external capabilites that inteliggence layer can invoke. This layer should use standardised interface and enforce it's own security policies.
-
-*Note that each layer mentioned enforces itw own polices, identites, and caching strategies* to achieve their own __localised, reliability, security and performance requirments.__
-
-### Recommendation 
-
-
-| **Recommendation** | **Description** |
-|----------------------|-----------------|
-| **Prioritize security and Responsible AI controls** | Implement traditional application security plus AI-specific safety measures as a primary design driver. Enforce provider safety systems, input/output filtering, identity-bound rate limiting and quotas, and token/prompt caps. Security and safety controls must be verified and can't be assumed from managed services. |
-| **Keep intelligence away from the client** | Design back-end services to handle cross-cutting concerns like rate limiting, failover operations, and AI processing logic. Abstract behavior and intelligence away from the client to future-proof your design and improve maintainability. |
-| **Block direct access to data stores** | Code in AI systems shouldn’t directly access your data stores. Route all data requests through an API or similar data access abstraction that enforces authorization and propagates user or tenant context into retrieval and filtering. Pass forward user identity so that data level security can be applied. |
-| **Abstract your models and tools** | Use abstraction layers to decouple your application from specific models, tools, and technologies. Implement standardized interfaces and protocols to provide flexibility as technologies evolve, which makes your design more maintainable and future-proof. |
-| **Isolate behaviors and actions** | Design clear boundaries across client, intelligence (routing/orchestration/agents), knowledge (grounding data), and tools (business APIs) layers. Each layer should enforce its own policies, identities, and caching strategies to reduce blast radius and focus development efforts. |
-| **Prioritize prebuilt solutions** | Use software as a service (SaaS) or platform as a service (PaaS) to handle workload functions when they meet security, safety, compliance, and quota needs. Implement compensating controls through gateways that enforce authentication, quotas, safety, and logging. Use prebuilt and pretrained models where possible to minimize the operational and development burden for your workload and operations teams. |
-
-### Distincition Between Inferencing and Intelligence Applications
-
-* __Inferecneing Application__: Such pplications will do a single step operations like classification or regression. The typical architecture is like the client communicate via AI gateway that provides authentication, quatas, safety, and routing. That calles into the model serving (model inferenecing) layer in Azure AI Foundry, AKS, or online managed endpoints. While practical th results might be chashed for further useage. __Such applications require minimal orchestration, and the focus is on performance and throughput__.
-
-* __Intelligent Application__: Such application perform planning, coordination, multi-step reasoning and are handled via agents and agent orchestration. The typical architecture likes the client (client layer) invokes an agent or agent orchestrator (intelligence layer) where the agent will invoke external tools via MCP (tool layer) or call other agents or APIs. The agent might call into grounding knowlegde (knowledge layer). __This kind of applications usually need agentic patterns and model routing and comples workflow coordination integrate with multiple data sources and tools and requires conversation and context management.__
-
 
 
