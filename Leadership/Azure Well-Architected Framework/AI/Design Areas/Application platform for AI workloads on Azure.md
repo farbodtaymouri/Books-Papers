@@ -4,7 +4,7 @@ https://learn.microsoft.com/en-us/azure/well-architected/ai/application-platform
 * The required platfrom capability depends on the applications and AI workloads hosting on that. This article provides platfrom design considerations for the the types of applications or AI workloads
     * Explratory Data analysis (EDA)
     * Model training and model fine tuning
-    * Infrencing 
+    * Inferencing 
 
 # Recommendations
 
@@ -20,3 +20,29 @@ This section recoomends some design considerations for different types of worklo
 
 
 # Considerations for the EDA platfrom
+
+EDA is a common function that all data scientist do before any ML modeling or statistical analysis. IT can be considered as a development or descovery phase, which means that the target for reliability and performance is much less than those for production resources. For the EDA activities the following capability from the platfrom might be considred:
+
+## Functional Requirments
+
+Consider the following questions:
+
+*  __Does platfrom support Transient usage__: Most of the EDA activties are time-boxed and interactive, hence the resources used might be able to be turned-off if not used. This capability helps to control the cost of EDA.
+*  __Does the platfrom supports compute optionality__: The platfrom should be able to enable on-demand GPUs as needed and various compute options to help right-size the platfrom
+*  __Does the platfrom support MLflow__: The platfrom should enable MLFLOW to track the experiments. It is importnat because
+     *  __Experiment Tracking__
+     *  __Reproduibility__
+     *  __Data and model versioning__
+     *  __Collaborative work__
+
+## Non-functional Requirments
+
+The NFR for the platfrom capability to support the EDA activities are as follows
+
+*  __How the platfrom can help control costs__: the platfrom should enable DS to do their owrk according to their schduling requirements but it should be right-sized to ensure the cost expectations are met.
+*  __What security requirments must be followed by the platfrom__: Since EDA task are done with mostly production level data the same security constrains must be followed by the platfrom.
+     *  __Authentication and Authorisation__
+     *  __Encryption of data at rest and transient__
+     *  __Regional and Data protection requirments__
+     *  __Robust monitoring and alresting functinality including logging__
+     *  __Private networking access to the centralise repositories for container images, data, and code assests.
