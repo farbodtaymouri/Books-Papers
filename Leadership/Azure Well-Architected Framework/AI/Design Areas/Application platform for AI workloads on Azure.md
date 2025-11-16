@@ -62,7 +62,13 @@ The NFR for the platfrom capability to support the EDA activities are as follows
 
 # Considerations for model hosting and inferencing platform
 
-Model hosting and inferencing functions make the serve layer of an AI workload.These functions are performed with the endpoints that are specific to the software that you use. Model-serviing software solutions are Python SDKs that front an model via API and add functionality that is specific to the solution. Fundamentally the APIs for the serve layer are microservices, thus you must follow the same practice for these APIs that you follow for other microservices in your environment. They should be containairsed, bulkheadec from other services and have their own lifecycle that are indepndent of other APIs and microservices.
+Model hosting and inferencing functions make the serve layer of an AI workload.These functions are performed with the endpoints that are specific to the software that you use. Model-serviing software solutions are Python SDKs that front an model via API and add functionality that is specific to the solution. __Fundamentally the APIs for the serve layer are microservices, thus you must follow the same practice for these APIs that you follow for other microservices in your environment. They should be containairsed, bulkheadec from other services and have their own lifecycle that are indepndent of other APIs and microservices.__
 
-## Functional Capabilities
+## Functional Requirments
+
+*  __Does your workload require batch or online inferencing__ : Depneding on the endpoint, either batch or online endpoint, the platfroms needs differeent capability. For example, for batch inferencing, the platfrom need to support transient compute nodes since when the batch job is finshed it needs to be shut down. For online-inferencing, the platfrom needs to support elastic computes that can scale up or scale down autmatically.
+
+*  __Does the platfrom support traceability?__: Traceability is the central to maintaiing the integrity of the models used in AI workloads. The platfrom must provide capabilites for model version, data lineage, who created the model, when it was deployed. Also the platfrom needs to provide a capability for tagging which allows the model to be tagged properly for hosting. For example, the DS team knows which images from the artifactory they need to pull for running the model.
+*  
+*  __Will your hosting platfrom be a centralised resources__: If the platfrom is centralised, i.e., the models are dployed by one team and other team consume it on other other side of the business, then the platform must have chargeback mechenism. This capability allows you to track the platfrom utilization by team and workload.
 
