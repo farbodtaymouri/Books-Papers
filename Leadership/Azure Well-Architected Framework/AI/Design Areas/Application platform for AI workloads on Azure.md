@@ -69,6 +69,16 @@ Model hosting and inferencing functions make the serve layer of an AI workload.T
 *  __Does your workload require batch or online inferencing__ : Depneding on the endpoint, either batch or online endpoint, the platfroms needs differeent capability. For example, for batch inferencing, the platfrom need to support transient compute nodes since when the batch job is finshed it needs to be shut down. For online-inferencing, the platfrom needs to support elastic computes that can scale up or scale down autmatically.
 
 *  __Does the platfrom support traceability?__: Traceability is the central to maintaiing the integrity of the models used in AI workloads. The platfrom must provide capabilites for model version, data lineage, who created the model, when it was deployed. Also the platfrom needs to provide a capability for tagging which allows the model to be tagged properly for hosting. For example, the DS team knows which images from the artifactory they need to pull for running the model.
-*  
+
 *  __Will your hosting platfrom be a centralised resources__: If the platfrom is centralised, i.e., the models are dployed by one team and other team consume it on other other side of the business, then the platform must have chargeback mechenism. This capability allows you to track the platfrom utilization by team and workload.
+
+## Nonfunctional Requirments
+
+*  __What are the reliability requirments for the platfrom__? Server layer APIs (inferencing) are production resources hence the same reliability requirments must be applied to them as to other workloads criticality https://learn.microsoft.com/en-us/azure/well-architected/reliability/identify-flows. If the APIs need has high-criticality then the platfrom must support mullti-region design.
+  
+*  __What networking controls are required for the platfrom__? The platfrom needs to provide private endpoint connectivty or providing Egress firewalls to provide the required protection.
+*  __What are the identity and access security requirments__? The platfrom needs to provide capability to access control to deployed APIs. The platfrom need to provide native RBAC or built-in support such Entra ID. 
+*  __What monitoring capability does platfrom support__? The platfrom needs to provde capability to the end-user for accessing the logs of deployed APIs. This help to auditing and troubleshooting mulfunctions.
+*  __What are the performance requirments for the platfrom__? Inference latency is a common problem. Platfroms including serverless or PaaS architecture that uses a utility model (pay-per-use consumption model) can be affected by a noisy neighbour (SSBI is PBI) and hence no guratneed throughput. Considering self-hosting on AKS provide more reliable throughput and latency behavior.
+*  
 
