@@ -92,4 +92,4 @@ Model hosting and inferencing functions make the serve layer of an AI workload.T
       * Consider compute clusters that is managed by Azure Machine Learning since it supports traffic splitting (for A/B testing) and it is robust for auditing. Having Compute clusters managed by Azure makes Day-2 operation (deployment and on-going support) easier.
       * When self-hosting models on Azure Kubernetes Service (AKS), isolate your AI workloads from other applications to ensure consistent performance and security. Use GPU resources only for AI tasks to control costs, and determine your performance baseline through testing so you can right-size compute without over-provisioning.
         
-
+# Considerations for Orchestration Platfrom
