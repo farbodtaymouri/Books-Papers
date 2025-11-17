@@ -80,5 +80,16 @@ Model hosting and inferencing functions make the serve layer of an AI workload.T
 *  __What are the identity and access security requirments__? The platfrom needs to provide capability to access control to deployed APIs. The platfrom need to provide native RBAC or built-in support such Entra ID. 
 *  __What monitoring capability does platfrom support__? The platfrom needs to provde capability to the end-user for accessing the logs of deployed APIs. This help to auditing and troubleshooting mulfunctions.
 *  __What are the performance requirments for the platfrom__? Inference latency is a common problem. Platfroms including serverless or PaaS architecture that uses a utility model (pay-per-use consumption model) can be affected by a noisy neighbour (SSBI is PBI) and hence no guratneed throughput. Considering self-hosting on AKS provide more reliable throughput and latency behavior.
-*  
+
+ ## Tools
+
+ The platfrom needs to provide a set of tools for the capabilites that are required for batch and online inferencing. 
+
+ *  __Batch Inferencing__:
+      * For foundation models uses OpenAI batch API
+      * For non-foundational model uses Azure Machine Learning Batch Endpoint that don't require low latency, or you need long-running batch operations over large datasets
+*  __Online Inferencing__:
+      * Consider compute clusters that is managed by Azure Machine Learning since it supports traffic splitting (for A/B testing) and it is robust for auditing. Having Compute clusters managed by Azure makes Day-2 operation (deployment and on-going support) easier.
+      * When self-hosting models on Azure Kubernetes Service (AKS), isolate your AI workloads from other applications to ensure consistent performance and security. Use GPU resources only for AI tasks to control costs, and determine your performance baseline through testing so you can right-size compute without over-provisioning.
+        
 
