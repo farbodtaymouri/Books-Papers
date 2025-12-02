@@ -27,3 +27,25 @@ After identifying use cases, it is good to identify effective solutions that can
 
 * __Low Implentation complexity__: Choose use cases with fewer integration requirments and less deep hooks into the legacy system and cross-depratment coordination. Pick ups use cases that can be build on top of the SaaS platfroms or internal tools with exposed APIs. Favour cases with structured and accessible data over unstrcutured or siloed data.
 * __High Financial Impacts__: Consider meterics such as Cost saving (reduced labour hour, low error rates), Efficiency (Faster cycle time, fewer manual steps), Revenuw Uplift (increased converesion, upsell and retention)
+
+
+# When to Use an AI Agent — Decision Flowchart
+
+```mermaid
+flowchart TD
+    Start["Start: Evaluate Use Case"] --> Q1{"High volume or recurring?"}
+    Q1 -- "No" --> A_noAuto["Use manual tools or ad hoc approach — Agent NOT recommended"]
+    Q1 -- "Yes" --> Q2{"Simple, rule based, stable inputs?"}
+    Q2 -- "Yes" --> A_rpa["Use traditional automation or scripts — Agent probably overkill"]
+    Q2 -- "No" --> Q3{"Requires multi step orchestration or cross system integration?"}
+    Q3 -- "No" --> Q4{"Involves unstructured data, decision making, or exceptions?"}
+    Q3 -- "Yes" --> Q4
+    Q4 -- "No" --> A_rpa
+    Q4 -- "Yes" --> Q5{"Is data and integration accessible and clean?"}
+    Q5 -- "No" --> A_rework["Reconsider or clean data first — Agent risky"]
+    Q5 -- "Yes" --> Q6{"Expected business impact is high versus implementation cost?"}
+    Q6 -- "No" --> A_simpleAuto["Consider simple automation first"]
+    Q6 -- "Yes" --> Q7{"Governance and monitoring controls in place?"}
+    Q7 -- "No" --> A_prepareGov["Build governance and ops readiness first"]
+    Q7 -- "Yes" --> A_buildAgent["Proceed — build agent MVP"]
+```
