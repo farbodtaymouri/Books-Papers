@@ -29,9 +29,10 @@ After identifying use cases, it is good to identify effective solutions that can
 * __High Financial Impacts__: Consider meterics such as Cost saving (reduced labour hour, low error rates), Efficiency (Faster cycle time, fewer manual steps), Revenuw Uplift (increased converesion, upsell and retention)
 
 
-# When to Use an AI Agent — Decision Flowchart
+## When to Use an AI Agent — Decision Flowchart
 
-```mermaid
+
+  ```mermaid
 flowchart TD
     Start["Start: Evaluate Use Case"] --> Q1{"High volume or recurring?"}
     Q1 -- "No" --> A_noAuto["Use manual tools or ad hoc approach — Agent NOT recommended"]
@@ -49,6 +50,7 @@ flowchart TD
     Q7 -- "No" --> A_prepareGov["Build governance and ops readiness first"]
     Q7 -- "Yes" --> A_buildAgent["Proceed — build agent MVP"]
 ```
+
 
 ## Forecasting the Return on Investment (ROAI) of AI Agents
 
@@ -68,3 +70,118 @@ To evalaute the ROI of AI initives, it needs to be evaluated across diffeerent d
 *   __Innovation and Enablement__: for example, AI experimentation that unlocks new business models, products, and services.
 *   __Brand Differentiation__:  for example, AI can position a company as a technology leader, attracting talent, partners, and customers.
 
+
+### Essential for Forecasting Return on Investments for AI Agents
+
+Organisations need to calculate ROI for AI agents. But for AI agents the ROI is more than just calculating the savings, it requires long-term value creation, strategic alginment and associated risks.
+
+$$
+ROI\% = 
+\frac{
+\text{Benefits} - (\text{Cost to Achieve} + \text{Cost to Maintain})
+}
+{\text{Cost to Achieve} + \text{Cost to Maintain}}
+\times 100
+$$
+
+
+In the above formula:
+*  __Benefit__: Additional Revenuw from new product or from increased volum. It can be in terms of cost saving or product improvement
+*  __Cost to Achieve__ : Implementation and Application Building, training and change management,
+*  __Cost to maintain__: Cloud consumption, model management.
+
+### Evaluating ROI from a multi-year perspective using Net Present Value (NPV)
+
+For AI agents inititatives the benefits usually is calculated over 3-5 years horizon. However, calculating the ROI the way it is formulated is not cocrrect as the both investment and the benfits that it gives today doesn't have the same value in the future. Hence, ROI is usually calculated via Net Present Value (NPV). In other words, if an intitative gives $10K cash-flow (rev-total cost) today then next year that $10K has less value than today. 
+
+The formula is:
+
+$$
+NPV = \sum_{t=1}^{n} \frac{CF_t}{(1+r)^t} - I
+$$
+
+Where:
+
+- CF_t = cash flow in year t
+- r = discount rate
+- n = number of years
+- I = initial investment
+
+Run an Example
+
+Let's say:
+
+- Initial Investment = $100,000
+- Annual Cash Flow Impact (positive) = $30,000
+- Time Horizon = 5 years
+- Discount Rate = 8%
+
+Then:
+
+Discount Rate: 8%
+
+|                     | Year 0   | Year 1 | Year 2 | Year 3 | Year 4 | Year 5 | 5-Year Total |
+|---------------------|----------|--------|--------|--------|--------|--------|----------------|
+| Cash In             |          | 30,000 | 30,000 | 30,000 | 30,000 | 30,000 | 150,000        |
+| NPV                 |          | 27,037 | 24,294 | 21,753 | 19,401 | 17,223 | 159,708
+
+if the NPV>0 then the investment must be approved other than that the investment must be rejected.
+
+* The NPV value helps you to priortise the AI use-cases. For example, consider the following three use-cases:
+
+| ROI component                                 | Use case 1 | Use case 2 | Use case 3 |
+|-----------------------------------------------|------------|------------|------------|
+| Cost to achieve                               | $60,000    | $90,000    | $100,000   |
+| Cost to maintain (5 yrs)                      | $45,000    | $60,000    | $50,000    |
+| Total benefit (5 yrs)                         | $150,000   | $240,000   | $180,000   |
+| Cash flow impact ($)                          | $45,000    | $90,000    | $30,000    |
+| Discounted cash flow impact, for example, NPV (4) | $23,847 | $53,738    | $3,810     |
+| ROI (%)                                       | 25%        | 39%        | 3%         |
+| Strategic value (1–10)                        | 7.5        | 9.0        | 6.5        |
+
+The NPV calculations are as follow:
+
+## Use Case 1
+
+|                     | Year 0    | Year 1 | Year 2 | Year 3 | Year 4 | Year 5 | 5-year Total |
+|---------------------|-----------|--------|--------|--------|--------|--------|---------------|
+| Cash In             |           | 30,000 | 30,000 | 30,000 | 30,000 | 30,000 | 150,000       |
+| NPV                 |           | 27,778 | 25,720 | 23,815 | 22,051 | 20,417 | 119,781       |
+| Cash Out            | (60,000)  | (9,000)| (9,000)| (9,000)| (9,000)| (9,000)| (105,000)     |
+| NPV                 | (60,000)  | (8,333)| (7,716)| (7,144)| (6,615)| (6,125)| (95,934)      |
+| Cash Flow Impact    | (60,000)  | 21,000 | 21,000 | 21,000 | 21,000 | 21,000 | 45,000        |
+| Discounted Cash Flow Impact | (60,000) | 19,444 | 18,004 | 16,670 | 15,436 | 14,292 | 23,847 |
+
+**25% ROI**
+
+---
+
+## Use Case 2
+
+|                     | Year 0    | Year 1 | Year 2 | Year 3 | Year 4 | Year 5 | 5-year Total |
+|---------------------|-----------|--------|--------|--------|--------|--------|---------------|
+| Cash In             |           | 48,000 | 48,000 | 48,000 | 48,000 | 48,000 | 240,000       |
+| NPV                 |           | 44,444 | 41,152 | 38,104 | 35,281 | 32,668 | 191,650       |
+| Cash Out            | (90,000)  | (12,000)| (12,000)| (12,000)| (12,000)| (12,000)| (150,000) |
+| NPV                 | (90,000)  | (11,111)| (10,288)| (9,526)| (8,820)| (8,167)| (137,913)    |
+| Cash Flow Impact    | (90,000)  | 36,000 | 36,000 | 36,000 | 36,000 | 36,000 | 90,000        |
+| Discounted Cash Flow Impact | (90,000) | 33,333 | 30,864 | 28,578 | 26,461 | 24,501 | 53,738 |
+
+**39% ROI**
+
+---
+
+## Use Case 3
+
+|                     | Year 0    | Year 1 | Year 2 | Year 3 | Year 4 | Year 5 | 5-year Total |
+|---------------------|-----------|--------|--------|--------|--------|--------|---------------|
+| Cash In             |           | 36,000 | 36,000 | 36,000 | 36,000 | 36,000 | 180,000       |
+| NPV                 |           | 33,333 | 30,864 | 28,578 | 26,461 | 24,501 | 143,738       |
+| Cash Out            | (100,000) | (10,000)| (10,000)| (10,000)| (10,000)| (10,000)| (150,000)|
+| NPV                 | (100,000) | (9,259)| (8,573)| (7,938)| (7,350)| (6,806)| (139,927)     |
+| Cash Flow Impact    | (100,000) | 26,000 | 26,000 | 26,000 | 26,000 | 26,000 | 30,927        |
+| Discounted Cash Flow Impact | (100,000) | 24,074 | 22,291 | 20,640 | 19,111 | 17,695 | 3,810 |
+
+**3% ROI**
+
+From the above example it is clear that the second use-case generates higher NPV, hence it looks it generates better ROI.
