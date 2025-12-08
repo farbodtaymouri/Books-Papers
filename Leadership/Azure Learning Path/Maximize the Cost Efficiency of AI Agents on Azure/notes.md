@@ -49,3 +49,22 @@ flowchart TD
     Q7 -- "No" --> A_prepareGov["Build governance and ops readiness first"]
     Q7 -- "Yes" --> A_buildAgent["Proceed — build agent MVP"]
 ```
+
+## Forecasting the Return on Investment (ROAI) of AI Agents
+
+To evalaute the ROI of AI initives, it needs to be evaluated across diffeerent dimentions. Tradational ROI models emphsize on direct financial outcomes, the AI initives often deliver intangible and strategic benfits that are equally critical to long-term success. These include, __effective-decision making, improved customer experience, and sustained competitive advantage__.
+
+### Quantified Cash flow
+*   __Revenue Uplift__: AI agents used for personalization, dynamic pricing, and predictive analytics help boost conversion rates and increase average deal size.
+*   __Spending Optimisation__: AI agents can automate negotiation of small purchases (e.g. under $10,000), reducing manual cost and improving procurement efficiency.
+*   __Effiicney gains__: By accelerating workflows and reducing cycle times, AI agents improve resource utilization and productivity, saving time and cost.
+*   __Risk Mitigation__: AI agents that detect fraud, forecast equipment failures, or flag compliance issues early help prevent financial losses and operational disruptions
+
+### Strategic and intangible value
+
+*   __Enhanved Decision Making__: AI Augments human judgment with data driven insights
+*   __Improved Customer Experience__: AI Powered recommendaer systems
+*   __Scalability and Agilibilty__: Scale operations without linear increase in the headcount
+*   __Innovation and Enablement__: for example, AI experimentation that unlocks new business models, products, and services.
+*   __Brand Differentiation__:  for example, AI can position a company as a technology leader, attracting talent, partners, and customers.
+
