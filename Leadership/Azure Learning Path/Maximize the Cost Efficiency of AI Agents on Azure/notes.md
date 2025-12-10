@@ -31,7 +31,9 @@ After identifying use cases, it is good to identify effective solutions that can
 
 ## When to Use an AI Agent — Decision Flowchart
 
-
+<details>
+  <summary>Click to expand</summary>
+   
   ```mermaid
 flowchart TD
     Start["Start: Evaluate Use Case"] --> Q1{"High volume or recurring?"}
@@ -51,8 +53,12 @@ flowchart TD
     Q7 -- "Yes" --> A_buildAgent["Proceed — build agent MVP"]
 ```
 
+</details>
 
 ## Forecasting the Return on Investment (ROAI) of AI Agents
+
+<details>
+  <summary>Click to expand</summary>
 
 To evalaute the ROI of AI initives, it needs to be evaluated across diffeerent dimentions. Tradational ROI models emphsize on direct financial outcomes, the AI initives often deliver intangible and strategic benfits that are equally critical to long-term success. These include, __effective-decision making, improved customer experience, and sustained competitive advantage__.
 
@@ -185,3 +191,28 @@ The NPV calculations are as follow:
 **3% ROI**
 
 From the above example it is clear that the second use-case generates higher NPV, hence it looks it generates better ROI.
+
+</details>
+
+## Implement Best Practices to Empower AI agent efficiency and ensure long-term success
+
+This module aims to provide the best practices for AI agent workloads focusing on efficiency, governance, scalability, and long-term success. Such things can be achieved through a couple of frameworks. Note that, it is not necessary to implement all of them but, organisations can pick up parts realted to what they need.
+
+*  __AI Center of Excellence (CoE)__: This framework or team structure governs AI-agent adoption - ahub for strategy, governance, best practices, and knowledge sharing
+     * CoE ensures consistency, redycing duplication, alingment with business vision
+     * CoE defines standrad arounds development, cost management, monitoring, responsible use with the help of other frameworks such as CAF, WAF, FinOps
+ 
+*  __FinOpes__: This framework focuses on optimizing the cost associated with AI-agents. Indeed, it focuses on spending and cost drivers (compute, token etc).
+*  __GenAI Ops__: This framwork focues on the dedicated operational practioces for LLMs. It covers aspects like model versioning, monitoring,governance, and integration with other workflows. Such practices ensure the AI-agent workflows are reliable, complient, maintaible, cost-optimsed, and secured.
+*   __Cloud Adoption Framework (CAF)__: This framework focuses on adopting AI agents at scale in the cloud should follow the CAF frameowrk. This ensures proper planning, governance, complient and alingment with the business vision.
+*    __Well Architected Framework (WAF)__: 
+
+
+
+
+
+
+
+
+
+
