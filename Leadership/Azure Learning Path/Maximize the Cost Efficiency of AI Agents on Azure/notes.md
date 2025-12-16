@@ -196,6 +196,9 @@ From the above example it is clear that the second use-case generates higher NPV
 
 ## Implement Best Practices to Empower AI agent efficiency and ensure long-term success
 
+<details>
+  <summary>Click to expand</summary>
+
 This module aims to provide the best practices for AI agent workloads focusing on efficiency, governance, scalability, and long-term success. Such things can be achieved through a couple of frameworks. Note that, it is not necessary to implement all of them but, organisations can pick up parts realted to what they need.
 
 *  __AI Center of Excellence (CoE)__: This framework or team structure governs AI-agent adoption - ahub for strategy, governance, best practices, and knowledge sharing
@@ -207,10 +210,20 @@ This module aims to provide the best practices for AI agent workloads focusing o
 *   __Cloud Adoption Framework (CAF)__: This framework focuses on adopting AI agents at scale in the cloud should follow the CAF frameowrk. This ensures proper planning, governance, complient and alingment with the business vision.
 *    __Well Architected Framework (WAF)__: 
 
+</details>
 
+## Architect Scalable and Cost-efficient AI Agent solutions on Azure
 
+link: https://learn.microsoft.com/en-us/training/modules/architect-scalable-ai-agent-solutions/
 
+This module helps to understand AI agents architecture that are aligned with the business demand, provide deeep visbility on cost drivers and support long-term governance. It includes exploring referecne architecture, best practices, multi-agent design options and finanacial design principles that ensures operational efficiency, cost control and strategic alingment.
 
+### Leveraging Reference Architecture for Improved Efficiency
+As organisations scale their AI workloads on Azure Foundry, managing cloud resources across multiple workloads and subscriptions can quickly become complex and costly. To ensure the architecture remains secure, robust and cost effective, it is essential to start with a proven foundation which mean using a __reference architecture__. Reference architectures ensure __streamline operations, optimze resource allocations, and secure long-term cost efficinecy__. Note that in order to estimate the TCO of hosting a solution on Azure, a comprehensive architecture plan is required. A Comprehensive architecture plan includes both platfrom and workloads architecture that can be compared against a recognised referecne architecture to align technical and financial strategies to optimise investment and ensure cost efficency. Twe main reference architecture in Azure Foundry are:
+
+*  __Azure Landing Zone__: It is designed based on CAF which provides an envrionment designed for scalability, modularity, and repeatable deployments (WAF pillars). Azure LZ helps to reduce the cost, optimse the performance of workloadsa by providing a structured framework for governance, automation and standardised deployment patterns. This LZ builts-in with Azure Policy and RBACs to enforce cost-saving rules, and ensure workloads are right-sized for the actual use. Additinally Azure LZ provides insights on resource usages through tools like Azure Monitor and Cost Management. __Azure LZ lets organisation grow their could footprint in controled and budget-conscious manner__. 
+  
+*  __Baseline Microsfot Foundry Chat Reference Architecture__:
 
 
 
