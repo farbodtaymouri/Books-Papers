@@ -374,3 +374,8 @@ The following benefits can be obtains from multi-agent architecture:
 * __Operational Resiience and Cost Containment__: Multi-agent systems introduce fault isolation and fallback mechanisms:Retry logic and agent substitution prevent cascading failures. Token usage monitoring avoids runaway costs. Cached responses and degraded modes preserve service continuity.
 
 * __Governance and Life cycle Cost__: Agent versioning, registry and observability are cost control levers. Indeed, Agent versioning prevent regressions and support rollback. Observability and dasboards surface the inefficiencies and oversue. Registry metaata enables dynamic aganet selection and load balancing.
+
+
+## Manage and Optimise AI Agents Investment on Azure
+
+Managing and optimising the AI Agent investments on Azure is now more streamlined with built-in observability capabilites. Such tools provide enterprise-grade observability, governance, and performance optimisation capabilities essential for deploying intelligence, goal-driven agents at scale.
