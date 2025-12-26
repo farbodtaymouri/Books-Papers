@@ -231,11 +231,146 @@ As organisations scale their AI workloads on Azure Foundry, managing cloud resou
      *  __Governance__: Applies polocies and blueprints to enforce compliance. Uses managment locks, cost mangement and resource quatas. audtis acitvity with azure activity log and sets up guardrails for resorce deployments.
      *  __Platfrom automation__: Deploy resources via ARM/BIcep templates or Azure cLI. Automates provisioning and configurations via automated pipelines (Azure Devops or Github)
 
-![Azure LZ](../images/azure-landing-zone-architecture-diagram-hub-spoke.svg)
+__Note that the subscriptions under platfrom management group (security, managment, identiy ,etc) representsthe platfrom landing zone. The subscription under landing zone management group represent the application landing zone. A single Azure landing zone contains both platform and application landing zone.__
+
+Decommissioned landing zones contain applications that are no longer used but you may need, for example, to provide support for customers. Sandboxed landing zones are isolated environments in which you can test and experiment with code and components without risking any impact on production environments.
+
+![Azure LZ](./image/azure-landing-zone-architecture-diagram-hub-spoke.svg)
   
-*  __Baseline Microsfot Foundry Chat Reference Architecture__:
+*  __Baseline Microsfot Foundry Chat Reference Architecture__: https://learn.microsoft.com/en-us/azure/architecture/ai-ml/architecture/baseline-microsoft-foundry-landing-zone
+
+![Azure LZ](./image/baseline-microsoft-foundry-landing-zone.svg)
+
+This reference architecture demonstrates how to deploy AI agent workloads in Azure Landing Zone. It separates ownership between __Application Landing Zone (Workload Team)__ and __Platform Landing Zone (Platform Team)__.
+
+<details>
+  <summary>Click to expand</summary>
+
+#### Application Landing Zone Components (Workload Team Owned)
+
+1. **Microsoft Foundry Resource & Projects**
+   - Platform for AI developers to build, evaluate, and deploy AI models
+   - Hosts generative AI models as MaaS (Models as a Service)
+   - Implements content safety and connections to knowledge sources/tools
+
+2. **Agent Service**
+   - Cloud-native runtime for intelligent agents
+   - Provides orchestration layer for chat interactions
+   - Hosts and manages the chat agent processing user requests
+   - Uses standard agent setup connected to dedicated subnet
+
+3. **Azure App Service**
+   - Hosts the web application with chat UI
+   - Multiple instances across availability zones
+   - Code hosted on Azure Storage as ZIP file
+
+4. **Azure AI Search**
+   - Serves as workload knowledge store
+   - Powers Retrieval Augmented Generation (RAG) pattern
+   - Queries and provides grounding data for foundation models
+
+5. **Azure Cosmos DB for NoSQL**
+   - Agent state storage
+   - Chat history storage
+   - Managed exclusively by Agent Service
+
+6. **Azure Storage Accounts**
+   - File storage for agents
+   - Web application code hosting
+   - Backup/recovery vaults
+
+7. **Application Gateway with WAF**
+   - Reverse proxy routing user requests to chat UI
+   - Web Application Firewall for protection
+   - Hosts TLS certificates
+
+8. **Azure Key Vault**
+   - Stores Application Gateway TLS certificates
+   - Secrets management
+
+9. **Monitoring Stack**
+   - Azure Monitor
+   - Application Insights (APM for chat UI, Agent Service, models)
+   - Log Analytics workspace
+
+10. **Spoke Virtual Network**
+    - Subnets for App Gateway, App Service, private endpoints, agent egress, build agents, jump boxes
+    - Network Security Groups (NSGs) on each subnet
+    - User-Defined Routes (UDRs) for traffic control
+    - Private endpoints for secure connectivity to PaaS services
+
+#### Platform Landing Zone Components (Platform Team Owned)
+
+1. **Hub Virtual Network**
+   - Centralized regional hub with shared services
+   - Peers with spoke networks via VNet peering
+   - Hosts shared infrastructure services
+
+2. **Azure Firewall**
+   - Manages all egress traffic from workloads
+   - Inspects and restricts outbound traffic
+   - Routes traffic to internet/cross-premises destinations
+   - Enforces application and network rules
+
+3. **Azure Bastion**
+   - Secure RDP/SSH access to VMs
+   - Provides operational access to workload components
+   - Eliminates need for public IP addresses on VMs
+
+4. **DNS Services**
+   - Azure Private DNS Zones for private endpoints
+   - DNS Private Resolver for resolution
+   - Handles FQDN resolution for all services
+   - Links rulesets to application landing zones
+
+5. **Azure DDoS Protection**
+   - Protects public IP addresses from distributed attacks
+   - Applied to Application Gateway's public IP
+   - Network or IP-based protection plans
+
+6. **VPN Gateway / ExpressRoute**
+   - Cross-premises connectivity
+   - Allows data scientists to access Foundry portal from workstations
+   - Provides hybrid connectivity to on-premises resources
+
+7. **Azure Policy Governance**
+   - Organization-wide governance constraints
+   - DeployIfNotExists (DINE) policies for automated compliance
+   - Applied at management group or subscription level
+   - Enforces security, networking, and tagging standards
+
+8. **User-Defined Routes (UDRs)**
+   - Enforces tunneling to hub network's firewall
+   - Controls traffic flow between subnets
+   - Ensures all egress traffic is inspected
+
+
+</details>
 
 
 
 
+### The cost perspective of multi-agent inteloigence, a strategic lens for enterprise
 
+As generative AI inititavies move from POCs into productions, organisations face a pivotal challenges, keeping a sinhle monolithic architecture or embrace a modular, multi-agent intelligence. The latter offers clear advantage on flexibility, spcialisation, and resilience but it inroduces a __cost dynamics__ some are explict some or implicit.
+
+Multi-agent intelligence isn't just a technical upgrade, it’s a cost architecture. By distributing intelligence, modularizing capabilities, and aligning model usage with task complexity, enterprises can build AI systems that aren't only smarter but also more economically sustainable.
+
+| Dimension              | Single-Agent System                              | Multi-Agent System                                              |
+|------------------------|--------------------------------------------------|------------------------------------------------------------------|
+| Model usage            | One large model handles all tasks                | Mix of LLMs, SLMs, and NLU models per agent                       |
+| Tool integration       | Centralized, often hard-coded                   | Modular, agent-specific tools via MCP                            |
+| Change management      | Full-stack regression testing                   | Isolated agent updates with version control                      |
+| Security & compliance  | Broad access, higher risk                       | Least-privilege per agent, scoped data access                    |
+| Performance            | Bottlenecks under load                          | Parallel execution across agents                                 |
+| Scalability            | Vertical scaling only                           | Horizontal scaling across domains and tenants                    |
+
+Multi-agent systems shifts the cost from centralised complexity to distributed coordination. It's a trade off for long-term agility but it needs extra upfront investment cost in __orchestration, registry and observibility__.
+
+The following benefits can be obtains from multi-agent architecture:
+
+* __Token Economics and Model Selection__: Multi-agent systems allow for intelligent routing based on the task complexity. For example, NLU or SLM for simple classification and LLM for complex synthesis and infrencing. By matching the model size with task type the enterprise can reduce unneccsary costs and this can be achieved via __classifiers and orchestrators__.
+
+* __Operational Resiience and Cost Containment__: Multi-agent systems introduce fault isolation and fallback mechanisms:Retry logic and agent substitution prevent cascading failures. Token usage monitoring avoids runaway costs. Cached responses and degraded modes preserve service continuity.
+
+* __Governance and Life cycle Cost__: Agent versioning, registry and observability are cost control levers. Indeed, Agent versioning prevent regressions and support rollback. Observability and dasboards surface the inefficiencies and oversue. Registry metaata enables dynamic aganet selection and load balancing.
