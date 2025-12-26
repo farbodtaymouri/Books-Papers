@@ -222,7 +222,16 @@ This module helps to understand AI agents architecture that are aligned with the
 As organisations scale their AI workloads on Azure Foundry, managing cloud resources across multiple workloads and subscriptions can quickly become complex and costly. To ensure the architecture remains secure, robust and cost effective, it is essential to start with a proven foundation which mean using a __reference architecture__. Reference architectures ensure __streamline operations, optimze resource allocations, and secure long-term cost efficinecy__. Note that in order to estimate the TCO of hosting a solution on Azure, a comprehensive architecture plan is required. A Comprehensive architecture plan includes both platfrom and workloads architecture that can be compared against a recognised referecne architecture to align technical and financial strategies to optimise investment and ensure cost efficency. Twe main reference architecture in Azure Foundry are:
 
 *  __Azure Landing Zone__: It is designed based on CAF which provides an envrionment designed for scalability, modularity, and repeatable deployments (WAF pillars). Azure LZ helps to reduce the cost, optimse the performance of workloadsa by providing a structured framework for governance, automation and standardised deployment patterns. This LZ builts-in with Azure Policy and RBACs to enforce cost-saving rules, and ensure workloads are right-sized for the actual use. Additinally Azure LZ provides insights on resource usages through tools like Azure Monitor and Cost Management. __Azure LZ lets organisation grow their could footprint in controled and budget-conscious manner__. Azure LZ has 8 design areas:
-     *  __Azure Billing and Microsfot Entra tenant__
+     *  __Azure Billing and Microsfot Entra tenant__:
+     *  __Identiry and access mangement__: Uses MS Entra ID for authentication and authorization. Implment RBACs and Azure policies and identity protection, SSO, MFA and managed identities for resources.
+     *  __Resource Organization__: It provides the structure for Management Group, Subscriptions, RGs, and naming conventions. Applies tags for cost tracking and policy enforcement.
+     *  __Network Topology and Connectivity__: Designing Vnets, Subnets, NSGs, and gateways. Peering for hubrid or multi-cloud connectivity and uses Azure firewalls and private endpoint for success access.
+     *  __Security__:  Sets up security baselines, threat detection, and encryption
+     *  __Management__: Uses Azure Monitor, Log analytics workspace and Application insights for monitoring and diagnostics. set backups and disaster recovery and inventory tracking.
+     *  __Governance__: Applies polocies and blueprints to enforce compliance. Uses managment locks, cost mangement and resource quatas. audtis acitvity with azure activity log and sets up guardrails for resorce deployments.
+     *  __Platfrom automation__: Deploy resources via ARM/BIcep templates or Azure cLI. Automates provisioning and configurations via automated pipelines (Azure Devops or Github)
+
+![Azure LZ](../image/azure-landing-zone-architecture-diagram-hub-spoke.svg)
   
 *  __Baseline Microsfot Foundry Chat Reference Architecture__:
 
