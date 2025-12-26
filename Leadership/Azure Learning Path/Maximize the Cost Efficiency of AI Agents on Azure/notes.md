@@ -231,7 +231,7 @@ As organisations scale their AI workloads on Azure Foundry, managing cloud resou
      *  __Governance__: Applies polocies and blueprints to enforce compliance. Uses managment locks, cost mangement and resource quatas. audtis acitvity with azure activity log and sets up guardrails for resorce deployments.
      *  __Platfrom automation__: Deploy resources via ARM/BIcep templates or Azure cLI. Automates provisioning and configurations via automated pipelines (Azure Devops or Github)
 
-![Azure LZ](../image/azure-landing-zone-architecture-diagram-hub-spoke.svg)
+![Azure LZ](../images/azure-landing-zone-architecture-diagram-hub-spoke.svg)
   
 *  __Baseline Microsfot Foundry Chat Reference Architecture__:
 
