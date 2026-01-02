@@ -385,3 +385,19 @@ Microsfot Foundry AgentOps capabilites provide a comprehensive framework for __m
 *  __Azure Monotor Application Insights__: It provides detailed observability by capturing detailed telemtry such as duration, failure rates, latency and user interaction patterns. 
 
 * __Azure Monitor Exporer__: Azure mintor explorer provides insight into the underlying infrastructure supporting AI agents such as CPU, memory, and netowrk usage, inference time and quota consumption.
+
+# Optimise spending on AI agents on Azure
+
+https://learn.microsoft.com/en-us/training/modules/manage-optimize-agent-investment-azure/3-optimize-spending
+
+As AI workloads scale, controling the cost becomes as importnat asmaintaing the performance. Azure approaches to optimse AI agents spending include a pricing models and architectural controls that balance the efficiency and predictability. One way to aachive that is to leverage __Azure Provisioned Throughput Units__. 
+
+PTUs are model-indepdendet units that define how much processing capacity an AI deployment can handle, measured in Token Per minutes. 
+
+Key strategies for maximising ROI for PTUs:
+
+*  __PTUs__ are good for predictable and scalable AI workloads. 
+*  The provide significant discouts in long-term and steady workloads making them key lever fori mproving ROI.
+*  Avoid hourly billing for long-term deployments
+*  Leverage cost management to view the reservation utilisation
+*  
