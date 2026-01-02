@@ -379,3 +379,9 @@ The following benefits can be obtains from multi-agent architecture:
 ## Manage and Optimise AI Agents Investment on Azure
 
 Managing and optimising the AI Agent investments on Azure is now more streamlined with built-in observability capabilites. Such tools provide enterprise-grade observability, governance, and performance optimisation capabilities essential for deploying intelligence, goal-driven agents at scale.
+
+Microsfot Foundry AgentOps capabilites provide a comprehensive framework for __monitoring, governing, and optimising AI agents__ at scale.
+
+*  __Azure Monotor Application Insights__: It provides detailed observability by capturing detailed telemtry such as duration, failure rates, latency and user interaction patterns. 
+
+* __Azure Monitor Exporer__: Azure mintor explorer provides insight into the underlying infrastructure supporting AI agents such as CPU, memory, and netowrk usage, inference time and quota consumption.
